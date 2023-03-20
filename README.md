@@ -1,5 +1,9 @@
 # 404WebMail
 
+Config root directory XAMPP
+    1. Open config Apache XAMPP
+        Edit: DocumentRoot to public
+              <Directory "<yourpath>/public">
 
 
 ## Getting started
