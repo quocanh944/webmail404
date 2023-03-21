@@ -1,5 +1,5 @@
 <?php require base_path('views/partials/head.php') ?>
-
+<!-- Config User -->
 <main style="padding-top: 10%; padding-bottom: 10%">
     <form class="w-25 m-auto" action="/session" method="POST">
         <!-- Email input -->
