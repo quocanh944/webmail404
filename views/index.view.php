@@ -1,17 +1,20 @@
-<?php 
-    if (!isset($_SESSION['user'])) {
-        header('location: /login');
-        die();
-    }
-?>
-<?php require('partials/head.php') ?>
-<?php require('partials/nav.php') ?>
-<?php require('partials/banner.php') ?>
+<!-- <?php include_once('header.php');?> -->
 
-<main>
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-        <p>Hello, <?= $_SESSION['user']['email'] ?? 'Guest' ?>. Welcome to the home page.</p>
-    </div>
-</main>
+<!-------------------------sidebar------------>
+<?php include_once('sidebar.php');?>
+<!-- Sidebar  -->
 
-<?php require('partials/footer.php') ?>
+
+<!--------page-content---------------->
+
+
+
+<!--top--navbar----design--------->
+<?php include_once('top-header.php');?>
+
+<!--------main-content------------->
+<?php include_once('main-content.php');?>
+
+
+<!---footer---->
+<?php include_once('footer.php');?>
