@@ -37,7 +37,7 @@ if ($user) {
 } else {
     $db->query('INSERT INTO user(email, password) VALUES(:email, :password)', [
         'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT)
+        'password' => md5($password)
     ]);
 
     login($user);
