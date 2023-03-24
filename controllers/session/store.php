@@ -29,7 +29,7 @@ $user = $db->query('select * from user where email = :email', [
 ])->find();
 
 if ($user) {
-    if (password_verify($password, $user['password'])) {
+    if (md5($password) == $user['password']) {
         login([
             'email' => $email
         ]);
