@@ -34,7 +34,7 @@
                         <form method="POST" action="/session">
                             <input type="hidden" name="_method" value="DELETE" />
                             <!-- <button class="text-white">Log Out</button> -->
-                            <button class="dropdown-item" href="#" onclick="logout()">Logout</button>
+                            <button class="dropdown-item">Logout</button>
                         </form>
                     </li>
                 </ul>

@@ -1,8 +1,8 @@
 <?php
 
 $router->get('/', 'controllers/index.php');
-$router->get('/about', 'controllers/about.php');
-$router->get('/contact', 'controllers/contact.php');
+$router->get('/about', 'controllers/about.php')->only('admin');
+$router->get('/contact', 'controllers/contact.php')->only('auth');
 
 $router->get('/notes', 'controllers/notes/index.php')->only('auth');
 $router->get('/note', 'controllers/notes/show.php');
@@ -19,4 +19,7 @@ $router->post('/register', 'controllers/registration/store.php')->only('guest');
 
 $router->get('/login', 'controllers/session/create.php')->only('guest');
 $router->post('/session', 'controllers/session/store.php')->only('guest');
-$router->delete('/session', 'controllers/session/destroy.php')->only('auth');
+$router->delete('/session', 'controllers/session/destroy.php');
+
+
+$router->get('/admin', 'controllers/admin/index.php')->only('admin');
