@@ -30,9 +30,7 @@ $user = $db->query('select * from user where email = :email', [
 
 if ($user) {
     if (md5($password) == $user['password']) {
-        login([
-            'email' => $email
-        ]);
+        login($user);
 
         header('location: /');
         exit();
