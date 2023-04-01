@@ -37,7 +37,7 @@ class Trash {
   }
   public function __toString()
   {
-      return "Draft[$this->mail_id, $this->user_id]";
+      return "Trash[$this->mail_id, $this->user_id]";
   } 
 
 }

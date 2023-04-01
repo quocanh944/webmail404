@@ -32,7 +32,7 @@ class Inbox {
 
 
   public function __toString() {
-    return "Mail ID: " . $this->mailId . ", User ID: " . $this->userId;
+    return "Inbox: " . $this->mailId . ", User ID: " . $this->userId;
   }
 }
 

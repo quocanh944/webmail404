@@ -38,7 +38,7 @@ class Spam {
   }
   public function __toString()
   {
-      return "Draft[$this->mail_id, $this->user_id]";
+      return "Spam[$this->mail_id, $this->user_id]";
   } 
 
 }

@@ -54,11 +54,11 @@ class Draft
     {
         $db = App::resolve(Database::class);
         if ($this->mailId) {
-        $db->query('UPDATE draft SET user_id = :user_id WHERE mail_id = :mail_id', [
-            'mail_id' => $this->mailId,
-            'user_id' => $this->userId
-        ]);
-    }
+            $db->query('UPDATE draft SET user_id = :user_id WHERE mail_id = :mail_id', [
+                'mail_id' => $this->mailId,
+                'user_id' => $this->userId
+            ]);
+        }
     }
     
     public function delete()

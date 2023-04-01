@@ -11,26 +11,26 @@ class Mail
   private $label;
   private $content;
   private $attachment;
-  private $createdAt;
+  private $created_at;
   private $cc;
   private $bcc;
-  private $sentBy;
-  private $isRead;
-  private $isStarred;
-  private $sentTo;
+  private $sent_by;
+  private $is_read;
+  private $is_starred;
+  private $sent_to;
 
   public function __construct($id, $label, $content, $attachment, $createdAt, $cc, $bcc, $sentBy, $isRead, $isStarred, $sentTo) {
     $this->id = $id;
     $this->label = $label;
     $this->content = $content;
     $this->attachment = $attachment;
-    $this->createdAt = $createdAt;
+    $this->created_at = $createdAt;
     $this->cc = $cc;
     $this->bcc = $bcc;
-    $this->sentBy = $sentBy;
-    $this->isRead = $isRead;
-    $this->isStarred = $isStarred;
-    $this->sentTo = $sentTo;
+    $this->sent_by = $sentBy;
+    $this->is_read = $isRead;
+    $this->is_starred = $isStarred;
+    $this->sent_to = $sentTo;
   }
 
 
@@ -63,7 +63,7 @@ class Mail
     }
 
     public function getCreatedAt() {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
     public function getCc() {
@@ -83,35 +83,35 @@ class Mail
     }
 
     public function getSentBy() {
-        return $this->sentBy;
+        return $this->sent_by;
     }
 
     public function setSentBy($sentBy) {
-        $this->sentBy = $sentBy;
+        $this->sent_by = $sentBy;
     }
 
     public function getIsRead() {
-        return $this->isRead;
+        return $this->is_read;
     }
 
     public function setIsRead($isRead) {
-        $this->isRead = $isRead;
+        $this->is_read = $isRead;
     }
 
     public function getIsStarred() {
-        return $this->isStarred;
+        return $this->is_starred;
     }
 
     public function setIsStarred($isStarred) {
-        $this->isStarred = $isStarred;
+        $this->is_starred = $isStarred;
     }
 
     public function getSentTo() {
-        return $this->sentTo;
+        return $this->sent_to;
     }
 
     public function setSentTo($sentTo) {
-        $this->sentTo = $sentTo;
+        $this->sent_to = $sentTo;
     }
 
   public static function findAll()
@@ -170,7 +170,7 @@ class Mail
     return $result;
   }
 
-  public static function insert()
+  public function save()
   {
       $db = App::resolve(Database::class);
 
