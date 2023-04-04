@@ -42,7 +42,3 @@ return view('session/create.view.php', [
         'email' => 'No matching account found for that email address and password.'
     ]
 ]);
-
-
-
-
