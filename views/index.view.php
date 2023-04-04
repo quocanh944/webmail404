@@ -19,19 +19,23 @@ require('partials/nav.php')
                 </div>
                 <div class="d-flex gap-3 me-3">
                     <div>
-                        1 - 20 of 100
+                        <?php echo ($pageSize * $page + 1) . " - " . ($pageSize * $page + $pageSize <= $count ? $pageSize * $page + $pageSize : $count) . " of $count" ?>
                     </div>
-                    <button>
+                    <a href="?page=<?php echo ($page) ?>&pageSize=<?php echo ($pageSize) ?>">
                         <i class="fa-solid fa-angle-left"></i>
-                    </button>
-                    <button>
+                    </a>
+                    <a href='<?php if ($pageSize * $page + $pageSize < $count) {
+                                    echo "?page=" . ($page + 2) . "&pageSize=$pageSize";
+                                } else {
+                                    echo "javascript:void(0)";
+                                } ?>'>
                         <i class="fa-solid fa-angle-right"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
             <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">
                 <tbody>
-                    <?php foreach ($all_mails as $value):?>
+                    <?php foreach ($all_mails as $value) : ?>
                         <tr>
                             <td class="ps-3">
                                 <div class="custom-control custom-checkbox">
@@ -40,8 +44,8 @@ require('partials/nav.php')
                                     </label>
                                 </div>
                             </td>
-                            <td><i class="fa fa-star text-warning"></i></td>
-                            <td> <span class="mb-0 text-muted font-light"><?php echo $user['email'] ?></span></td>
+                            <td><i onclick = "changeStarred(<?php echo $value['id'] ?>)" class='fa text-warning <?php echo $value['is_starred'] == 1 ? "fa-star" : "fa-star-o" ?>' style="cursor: pointer;"></i></td>
+                            <td> <span class="mb-0 text-muted font-light"><?php echo $value['sent_by'] ?></span></td>
                             <td> <a class="text-decoration-none" href="javascript: void(0)"><span class="font-light text-dark"> <?php echo $value['label'] ?> </span> </a></td>
                             <td class="text-muted font-light"><?php echo $value['created_at'] ?></td>
                         </tr>
@@ -51,8 +55,11 @@ require('partials/nav.php')
         </div>
     </div>
 </div>
-
-
+<script>
+    const changeStarred = (mailId) => {
+        console.log(mailId)
+    }
+</script>
 <?php
 require('partials/footer.php')
 ?>
