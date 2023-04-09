@@ -10,6 +10,7 @@ if ($_SESSION['user']['role'] == 'user') {
     $user = $db->query('select * from users where email = :email', [
         'email' => $email
     ])->find();
+
     $page = isset($_GET['page']) ? $_GET['page'] - 1 : 0;
     $pageSize = isset($_GET['pageSize']) ? $_GET['pageSize'] : 20;
 
@@ -21,7 +22,7 @@ if ($_SESSION['user']['role'] == 'user') {
         $pageSize = 20;
     }
 
-    ["allMails" => $all_mails, "count" => $count] = Inbox::getInboxMail($email, $page, $pageSize);
+    ["allMails" => $all_mails, "count" => $count] = Inbox::getInboxStarredMail($email, $page, $pageSize);
     
     view("index.view.php", [
         'all_mails' => $all_mails,

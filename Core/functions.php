@@ -13,7 +13,7 @@ function dd($value)
 
 function urlIs($value)
 {
-    return $_SERVER['REQUEST_URI'] === $value;
+    return substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], "?") ? strpos($_SERVER['REQUEST_URI'], "?") : strlen($_SERVER['REQUEST_URI'])) === $value;
 }
 
 function abort($code = 404)
