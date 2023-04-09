@@ -24,7 +24,7 @@ if (! empty($errors)) {
     ]);
 }
 
-$user = $db->query('select * from user where email = :email', [
+$user = $db->query('select * from users where email = :email', [
     'email' => $email
 ])->find();
 

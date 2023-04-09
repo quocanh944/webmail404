@@ -21,7 +21,7 @@ if ($_SESSION['user']['role'] == 'user') {
         $pageSize = 20;
     }
 
-    ["allMails" => $all_mails, "count" => $count] = Inbox::getInboxMail($email, $page, $pageSize);
+    ["allMails" => $all_mails, "count" => $count] = Inbox::getSpamMail($email, $page, $pageSize);
     
     view("index.view.php", [
         'all_mails' => $all_mails,

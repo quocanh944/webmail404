@@ -1,0 +1,28 @@
+.tags {
+  margin: 3px 2px;
+  display: inline-block;
+  align-content: center;
+  justify-content: center;
+  min-width: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.84615385;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.add-tags {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+  padding: 5px 3px;
+}
+.tag-remove {
+  padding-left: 4px;
+  font-size: smaller;
+}

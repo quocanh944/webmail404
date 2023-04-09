@@ -26,11 +26,10 @@ class User
     {
       $db = App::resolve(Database::class);
       // find the corresponding note
-      $user = $db->query('select * from user where email = :email', [
+      $user = $db->query('select * from users where email = :email', [
           'email' => $email
-      ])->findOrFail();
-      return new User($user['email'], $user['password'], $user['name'], $user['role'], $user['avatar']);
-
+      ])->find();
+      return $user;
     }
 
     // save a user to the database
@@ -61,13 +60,13 @@ class User
     public function delete()
     {
         $db = App::resolve(Database::class);
-        $db->query('DELETE FROM user WHERE email = :email', ['email' => $this->email]);
+        $db->query('DELETE FROM users WHERE email = :email', ['email' => $this->email]);
     }
 
     public static function all()
     {
         $db = App::resolve(Database::class);
-        $users = $db->query('SELECT * FROM user')->fetchAll();
+        $users = $db->query('SELECT * FROM users')->fetchAll();
         return array_map(function($user) {
             return new User($user['email'], $user['password'], $user['name'], $user['role'], $user['avatar']);
         }, $users);
