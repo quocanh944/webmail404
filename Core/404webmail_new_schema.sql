@@ -165,35 +165,35 @@ ALTER TABLE `mail`
 -- Constraints for table `inbox`
 --
 ALTER TABLE `inbox`
-  ADD CONSTRAINT `inbox_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`),
-  ADD CONSTRAINT `inbox_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`);
+  ADD CONSTRAINT `inbox_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `inbox_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mail`
 --
 ALTER TABLE `mail`
-  ADD CONSTRAINT `mail_sent_by_user` FOREIGN KEY (`sent_by`) REFERENCES `users` (`email`);
+  ADD CONSTRAINT `mail_sent_by_user` FOREIGN KEY (`sent_by`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mail_bcc`
 --
 ALTER TABLE `mail_bcc`
-  ADD CONSTRAINT `bcc_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`),
-  ADD CONSTRAINT `bcc_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`);
+  ADD CONSTRAINT `bcc_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bcc_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mail_cc`
 --
 ALTER TABLE `mail_cc`
-  ADD CONSTRAINT `cc_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`),
-  ADD CONSTRAINT `cc_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`);
+  ADD CONSTRAINT `cc_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cc_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mail_sent_to`
 --
 ALTER TABLE `mail_sent_to`
-  ADD CONSTRAINT `sent_to_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`),
-  ADD CONSTRAINT `sent_to_user` FOREIGN KEY (`user_email`) REFERENCES `users` (`email`);
+  ADD CONSTRAINT `sent_to_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `sent_to_user` FOREIGN KEY (`user_email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
