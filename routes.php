@@ -6,6 +6,7 @@ $router->get('/spam', 'controllers/spam.php')->only('auth');
 $router->get('/trash', 'controllers/trash.php')->only('auth');
 $router->get('/draft', 'controllers/draft.php')->only('auth');
 $router->get('/sent', 'controllers/sent.php')->only('auth');
+$router->get('/mail', 'controllers/mail/viewMail.php')->only('auth');
 
 $router->get('/register', 'controllers/registration/create.php')->only('guest');
 $router->post('/register', 'controllers/registration/store.php')->only('guest');
