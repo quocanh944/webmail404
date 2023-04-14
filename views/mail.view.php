@@ -16,10 +16,16 @@ require('partials/nav.php')
             <div class="w-100 d-flex justify-content-between mt-3">
                 <div class="d-flex custom-control custom-checkbox ps-3 gap-4">
                     <a href="/">
-                        <i class="fa-sharp fa-solid fa-arrow-left"></i>
+                        <i title="Back" class="fa-sharp fa-solid fa-arrow-left"></i>
                     </a>
                     <a class="border-0" id="btnDeleteMail">
-                        <i class="fa-solid fa-trash"></i>
+                        <i title="Send to trash" class="fa-solid fa-trash"></i>
+                    </a>
+                    <a class="border-0" id="btnStarMail">
+                        <i title="Not Starred" onclick="changeStarred(9)" class="fa text-warning fa-star-o" style="cursor: pointer;" aria-hidden="true"></i>
+                    </a>
+                    <a class="border-0" id="btnStarMail">
+                        <i title="More" class="fas fa-ellipsis-vertical"></i>                    
                     </a>
                 </div>
             </div>
@@ -50,7 +56,29 @@ require('partials/nav.php')
                 </tbody>
             </table> -->
             <div class="w-100 justify-content-between mt-3">
-                <?php echo $mail['content'] ?>
+                <div class="h-50 row pb-3" name="">
+                    <div class="icon senderIcon float-start col-2 col-lg-1 col-md-1" name="icon senderIcon">
+                        <!-- <i class="fas fa-face-grin-wide"></i> -->
+                        <img class="w-10" style="width: 80%;" name="iconImg" src="https://lh3.googleusercontent.com/a/AGNmyxbkwapR5Z_hESgH298AGgENVZQ4mmciSdZ5C4IiMg=s192-c-rg-br100" alt="">
+                    </div>
+                    <div class="col-8 senderInfo" name="senderInfo">
+                        <span translate="no" class="qu" role="gridcell" tabindex="-1">
+                            <span email="email@email.com" name="senderName" data-hovercard-id="" class="senderName">
+                                <span class="fs-5 fw-bolder">name</span>
+                            </span> 
+                            <span class="go fw-lighter"><span aria-hidden="true">&lt;</span>
+                                email@email.com
+                            <span aria-hidden="true">&gt;</span>
+                        </span> 
+                        <div class="to fw-lighter" name="to">to: me, abc@example.com</div>
+                    </div>
+                    <div class="time col-2" name="time">
+                        hh:mm, dd:mm:yy
+                    </div>
+                </div>
+                <div class="containMail offset-lg-1" name="contentMail">
+                    <?php echo $mail['content'] ?>
+                </div>
             </div>
         </div>
     </div>
