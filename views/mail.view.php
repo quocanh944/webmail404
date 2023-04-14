@@ -57,9 +57,9 @@ require('partials/nav.php')
             </table> -->
             <div class="w-100 justify-content-between mt-3">
                 <div class="h-50 row pb-3" name="">
-                    <div class="icon senderIcon float-start col-2 col-lg-1 col-md-1" name="icon senderIcon">
+                    <div class="Avt senderAvt float-start col-2 col-lg-1 col-md-1" name="icon senderAvt">
                         <!-- <i class="fas fa-face-grin-wide"></i> -->
-                        <img class="w-10" style="width: 80%;" name="iconImg" src="https://lh3.googleusercontent.com/a/AGNmyxbkwapR5Z_hESgH298AGgENVZQ4mmciSdZ5C4IiMg=s192-c-rg-br100" alt="">
+                        <img class="w-10" style="width: 80%;" name="AvtImg" src="https://lh3.googleusercontent.com/a/AGNmyxbkwapR5Z_hESgH298AGgENVZQ4mmciSdZ5C4IiMg=s192-c-rg-br100" alt="">
                     </div>
                     <div class="col-8 senderInfo" name="senderInfo">
                         <span translate="no" class="qu" role="gridcell" tabindex="-1">
@@ -67,13 +67,13 @@ require('partials/nav.php')
                                 <span class="fs-5 fw-bolder">name</span>
                             </span> 
                             <span class="go fw-lighter"><span aria-hidden="true">&lt;</span>
-                                email@email.com
+                                <?php echo $mail['sent_by'] ?>
                             <span aria-hidden="true">&gt;</span>
                         </span> 
                         <div class="to fw-lighter" name="to">to: me, abc@example.com</div>
                     </div>
                     <div class="time col-2" name="time">
-                        hh:mm, dd:mm:yy
+                        <?php echo $mail['created_at'] ?>
                     </div>
                 </div>
                 <div class="containMail offset-lg-1" name="contentMail">
