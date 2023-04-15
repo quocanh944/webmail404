@@ -76,42 +76,10 @@ require('partials/nav.php')
             }
         })
     }
-
-    const sendEmail = (payload) => {
-        $.ajax('/sendEmail', {
-            method: 'post',
-            data: payload,
-            success: (data, status) => {
-                console.log(data);
-                // window.location.reload();
-            }
-        })
-    }
-    $(() => {
-        $('#saveDraft').click(() => {
-            sendEmail({
-                'content': myEditor.getContent(),
-                'label': $('#subject-input').val(),
-                'sent_to': $('#sentTo').val()
-            })
-        })
-        $('#sendEmail').click(() => {
-            sendEmail({
-                'content': myEditor.getContent(),
-                'label': $('#subject-input').val(),
-                'sent_to': $('#sentTo').val()
-            })
-        })
-        $('.myContainer').TagsInput({
-            tagInputPlaceholder: 'eg. a@abc.com',
-            tagHiddenInput: $('#sentTo'),
-            tagContainerBorderColor: '#d3d3d3',
-            tagBackgroundColor: '#ffffff',
-            tagColor: '#000000',
-            tagBorderColor: '#688eac'
-        });
-    })
 </script>
+
+<?php require('partials/scriptCompose.php') ?>
+
 <?php
 require('partials/footer.php')
 ?>
