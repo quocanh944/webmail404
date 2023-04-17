@@ -24,11 +24,12 @@ require('partials/nav.php')
                     <a class="border-0" id="btnStarMail">
                         <i title="Change Starred" onclick="changeStarred(<?php echo $mail['id'] ?>)" class="fa text-warning <?php echo $mail['is_starred'] == 1 ? "fa-star" : "fa-star-o" ?>" style="cursor: pointer;" aria-hidden="true"></i>
                     </a>
-                    <a class="border-0" id="btnStarMail">
+                    <a class="border-0" id="btnSpam">
                         <i title="Move to spam" class="fa-solid fa-exclamation"></i>                    
                     </a>
                 </div>
             </div>
+            <div class="fs-4 text-center text-uppercase fw-bolder"><?php echo$mail['label']?></div>
             <div class="w-100 justify-content-between mt-3">
                 <div class="h-50 row pb-3" name="">
                     <div class="Avt senderAvt float-start col-2 col-lg-1 col-md-1" name="icon senderAvt">
