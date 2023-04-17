@@ -15,7 +15,21 @@
   vertical-align: middle;
   white-space: nowrap;
 }
-.add-tags {
+.toTags {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+  padding: 5px 3px;
+}
+.ccTags {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+  padding: 5px 3px;
+}
+.bccTags {
   width: 100%;
   background-color: transparent;
   border: none;

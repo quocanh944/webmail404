@@ -15,8 +15,18 @@
           </div>
           <div class="form-group" id="tags-input-group">
             <label>To: </label>
-            <div class="myContainer form-control mb-2"></div>
+            <div id="input_to" class="form-control mb-2"></div>
             <input type="text" class="inputTags" id="sentTo" hidden />
+          </div>
+          <div class="form-group" id="tags-input-group">
+            <label>Cc: </label>
+            <div id="input_cc" class="form-control mb-2"></div>
+            <input type="text" class="inputTags" id="ccTo" hidden />
+          </div>
+          <div class="form-group" id="tags-input-group">
+            <label>Bcc: </label>
+            <div id="input_bcc" class="form-control mb-2"></div>
+            <input type="text" class="inputTags" id="bccTo" hidden />
           </div>
           <div class="form-group">
             <textarea class="w-100" id="myTextarea"></textarea>

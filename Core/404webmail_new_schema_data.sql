@@ -3747,37 +3747,61 @@ ALTER TABLE `mail`
 -- Constraints for table `inbox`
 --
 ALTER TABLE `inbox`
-  ADD CONSTRAINT `inbox_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`),
-  ADD CONSTRAINT `inbox_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`);
+  ADD CONSTRAINT `inbox_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `inbox_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mail`
 --
 ALTER TABLE `mail`
-  ADD CONSTRAINT `mail_sent_by_user` FOREIGN KEY (`sent_by`) REFERENCES `users` (`email`);
+  ADD CONSTRAINT `mail_sent_by_user` FOREIGN KEY (`sent_by`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mail_bcc`
 --
 ALTER TABLE `mail_bcc`
-  ADD CONSTRAINT `bcc_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`),
-  ADD CONSTRAINT `bcc_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`);
+  ADD CONSTRAINT `bcc_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bcc_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mail_cc`
 --
 ALTER TABLE `mail_cc`
-  ADD CONSTRAINT `cc_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`),
-  ADD CONSTRAINT `cc_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`);
+  ADD CONSTRAINT `cc_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cc_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE; 
 
 --
 -- Constraints for table `mail_sent_to`
 --
 ALTER TABLE `mail_sent_to`
-  ADD CONSTRAINT `sent_to_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`),
-  ADD CONSTRAINT `sent_to_user` FOREIGN KEY (`user_email`) REFERENCES `users` (`email`);
+  ADD CONSTRAINT `sent_to_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `sent_to_user` FOREIGN KEY (`user_email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE badkeywords (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  content VARCHAR(255) NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE settings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  max_recipients INT NOT NULL,
+  max_email_size INT NOT NULL,
+  max_attachments INT NOT NULL,
+  max_attachment_size INT NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `locks` (
+  `email` VARCHAR(50),
+  `lock_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lock_reason` VARCHAR(255) NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `locks`
+  ADD PRIMARY KEY (`email`);
+  ADD CONSTRAINT `locks_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
