@@ -16,3 +16,23 @@ $router->delete('/session', 'controllers/session/destroy.php')->only('auth');
 
 $router->post('/changeStarred', 'controllers/mail/changeStarred.php')->only('auth');
 $router->post('/sendEmail', 'controllers/mail/sendEmail.php')->only('auth');
+
+
+
+// Admin
+$router->get('/admin', 'controllers/admin/index.php')->only('admin');
+$router->get('/user-list', 'controllers/admin/users/UserListController.php')->only('admin');
+$router->get('/user-edit', 'controllers/admin/users/UserDetailController.php')->only('admin');
+$router->get('/bad-keyword', 'controllers/admin/users/BadKeyWordController.php')->only('admin');
+// $router->get('/admin', 'controllers/admin/users/CurrentSettingController.php')->only('admin');
+
+$router->post('/createUser', 'controllers/admin/users/AddUserController.php')->only('admin');
+$router->post('/deleteUser', 'controllers/admin/users/DeleteUserController.php')->only('admin');
+$router->post('/updateUser', 'controllers/admin/users/UpdateUserController.php')->only('admin');
+$router->post('/checkPassword', 'controllers/admin/users/CheckPassWordController.php')->only('admin');
+$router->post('/updateSetting', 'controllers/admin/users/UpdateSettingController.php')->only('admin');
+$router->post('/bad-keyword', 'controllers/admin/users/BadKeyWordController.php')->only('admin');
+$router->post('/lock-user', 'controllers/admin/users/CheckLockController.php')->only('admin');
+$router->post('/unlock-user', 'controllers/admin/users/CheckLockController.php')->only('admin');
+
+$router->delete('/bad-keyword', 'controllers/admin/users/BadKeyWordController.php')->only('admin');

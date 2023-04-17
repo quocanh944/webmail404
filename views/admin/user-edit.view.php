@@ -21,18 +21,14 @@
               <h1>User Detail</h1>
               <hr>
               <!-- User Info Form -->
-              <form id="user-form">
+              <form id="user-form" autocomplete="off">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="email" name="email" required>
+                  <input type="email" value="<?php echo $user['email'] ?>" class="form-control" id="email" readonly name="email" required>
                 </div>
                 <div class="mb-3">
                   <label for="name" class="form-label">Full name</label>
-                  <input type="text" class="form-control" id="name" name="name" required>
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" required>
+                  <input type="text" value="<?php echo $user['name'] ?>" class="form-control" id="name" name="name" required>
                 </div>
                 <div class="mb-3">
                   <label for="confirm-password" class="form-label">Confirm password</label>
@@ -41,12 +37,12 @@
                 <div class="mb-3">
                   <label for="role" class="form-label">Role</label>
                   <select class="form-select" id="role" name="role" required>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
+                    <option value="user" <?php echo ($user['role'] == 'user') ? 'selected' : ''; ?>>User</option>
+                    <option value="admin" <?php echo ($user['role'] == 'admin') ? 'selected' : ''; ?>>Admin</option>
                   </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-                <button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancel</button>
+                <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary">Cancel</button>
               </form>
             </div>
         </div>
@@ -58,6 +54,19 @@
   <?php
         require(base_path("views/admin/partials/footer.php"));
   ?>
+
+  <script>    
+    // Đăng ký sự kiện kiểm tra mật khẩu khi gửi form
+    // var form = document.getElementById("user-form");
+    // form.addEventListener("submit", function(event) {
+    //   if (!validatePassword()) {
+    //     event.preventDefault();
+    //   }
+    // });
+  </script>
+  <script src="../assets/dist/js/user-edit.js"></script>
+  <script src="../assets/dist/js/Validation.js"></script>
+  <script src="../assets/dist/js/User.js"></script>
 </body>
 
 </html>

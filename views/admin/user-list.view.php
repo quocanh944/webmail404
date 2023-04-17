@@ -17,72 +17,132 @@
     require(base_path("views/admin/partials/dashboard-head.php"));
     ?>
         <div class="card-body">
-            <div class="">
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                <div class="table-title bg-dark text-white">
-                    <div class="row">
-                    <div class="col-sm-5">
-                        <h2>User <b>Management</b></h2>
-                    </div>
-                    <div class="col-sm-7">
-                        <a type="button" class="btn btn-success" data-bs-toggle="modal"
-                        data-bs-target="#addEmployeeModal"><i class="material-icons">&#xE147;</i> <span>Add New
-                            User</span></a>
-                    </div>
-                    </div>
-                </div>
-                <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($all_users as $index => $user) { ?>
-                      <tr class="text-start">
-                          <td><?php echo $index + 1 ?></td>
-                          <td><?php echo $user['name'] ?></td>
-                          <td><?php echo $user['email'] ?></td>
-                          <td><span class="status <?php echo $user['role'] === 'admin' ? 'text-danger' : 'text-primary' ?>">&bull;</span> <?php echo ucfirst($user['role']) ?></td>
-                          <td>
-                              <a class="settings" style="cursor:pointer" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                              <a class="delete" style="cursor:pointer" title="Delete" data-toggle="tooltip" onclick="delUser('<?php echo (strval($user['email'])); ?>')"><i class="material-icons">&#xE5C9;</i></a>
-                          </td>                        
-                      </tr>
-                  <?php } ?>
-                </tbody>
-            </table>
-
-                <div class="clearfix">
-                      <div class="hint-text">
-                          Showing <b><?php echo ($pageSize * $page + 1) . " - " . ($pageSize * $page + $pageSize <= $count ? $pageSize * $page + $pageSize : $count) ?></b> out of <b><?php echo $count ?></b> entries
-                      </div>
-                      <ul class="pagination">
-                          <div class="d-flex gap-3 me-3 align-items-center">
-                            <a class="text-dark btn" href="?page=<?php echo ($page) ?>&pageSize=<?php echo ($pageSize) ?>">
-                                <i class="fa fa-arrow-circle-left fs-4"></i>
-                            </a>
-                            <span class="fs-5"><?php echo $page + 1; ?></span>
-                            <a class="text-dark btn" href='<?php if ($pageSize * $page + $pageSize < $count) {
-                                            echo "?page=" . ($page + 2) . "&pageSize=$pageSize";
-                                        } else {
-                                            echo "javascript:void(0)";
-                                        } ?>'>
-                                <i class="fa fa-arrow-circle-right fs-4"></i>
-                            </a>
-                        </div>
-                      </ul>
+          <div class="table-responsive">
+              <div class="table-wrapper">
+              <div class="table-title bg-dark text-white">
+                  <div class="row">
+                  <div class="col-sm-5">
+                      <h2>User <b>Management</b></h2>
                   </div>
+                  <div class="col-sm-7">
+                      <a type="button" class="btn btn-success" data-bs-toggle="modal"
+                      data-bs-target="#addEmployeeModal"><i class="material-icons">&#xE147;</i> <span>Add New
+                          User</span></a>
+                  </div>
+                  </div>
+              </div>
+              <!-- <table class="table table-striped table-hover">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($all_users as $index => $user) { ?>
+                    <tr class="text-start">
+                        <td><?php echo $index + 1 ?></td>
+                        <td><?php echo $user['name'] ?></td>
+                        <td><?php echo $user['email'] ?></td>
+                        <td><span class="status <?php echo $user['role'] === 'admin' ? 'text-danger' : 'text-primary' ?>">&bull; </span><?php echo ucfirst($user['role']) ?></td>
+                        <td><?php echo 'Available' ?></td>
+                        <td class="d-flex">
+                          <a href="/user-edit?id=<?php echo $user['email'];?>" class="settings" style="cursor:pointer" title="Edit" data-toggle="tooltip">
+                              <i class="material-icons">&#xE8B8;</i>
+                          </a>
+
+                          <a class="delete" style="cursor:pointer" title="Delete" data-toggle="tooltip" onclick="delUser('<?php echo (strval($user['email'])); ?>')">
+                              <i class="material-icons">&#xE5C9;</i>
+                          </a>
+
+                          <?php if (in_array($user['email'], array_column($locked_users, 'email'))) { ?>
+                              <a class="unlock" style="cursor:pointer" title="Unlock" data-toggle="tooltip" onclick="unlockUser('<?php echo (strval($user['email'])); ?>')">
+                                  <i class="material-icons">lock_open</i>
+                              </a>
+                          <?php } else { ?>
+                              <a class="lock" style="cursor:pointer" title="Lock" data-toggle="tooltip" onclick="lockUser('<?php echo (strval($user['email'])); ?>')">
+                                  <i class="material-icons">lock</i>
+                              </a>
+                          <?php } ?>
+                      </td>                       
+                    </tr>
+                <?php } ?>
+              </tbody>
+          </table> -->
+          <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($all_users as $index => $user) { ?>
+                    <tr class="text-start">
+                        <td><?php echo $index + 1 ?></td>
+                        <td><?php echo $user['name'] ?></td>
+                        <td><?php echo $user['email'] ?></td>
+                        <td><span class="status <?php echo $user['role'] === 'admin' ? 'text-danger' : 'text-primary' ?>">&bull; </span><?php echo ucfirst($user['role']) ?></td>
+                        <td>
+                            <?php if (in_array($user['email'], array_column($locked_users, 'email'))) { ?>
+                                <span class="badge bg-danger">Locked</span>
+                            <?php } else { ?>
+                                <span class="badge bg-success">Available</span>
+                            <?php } ?>
+                        </td>
+                        <td class="d-flex">
+                            <a href="/user-edit?id=<?php echo $user['email']; ?>" class="settings" style="cursor:pointer" title="Edit" data-toggle="tooltip">
+                                <i class="material-icons">&#xE8B8;</i>
+                            </a>
+                            <a class="delete" style="cursor:pointer" title="Delete" data-toggle="tooltip" onclick="delUser('<?php echo strval($user['email']); ?>')">
+                                <i class="material-icons">&#xE5C9;</i>
+                            </a>
+                              <?php if (in_array($user['email'], array_column($locked_users, 'email'))) { ?>
+                                  <a class="unlock" style="cursor:pointer" title="Unlock" data-toggle="tooltip" onclick="unlockUser('<?php echo strval($user['email']); ?>')">
+                                      <i class="material-icons">lock_open</i>
+                                  </a>
+                              <?php } else { ?>
+                                  <a class="lock" style="cursor:pointer" title="Lock" data-toggle="tooltip" onclick="lockUser('<?php echo strval($user['email']); ?>')">
+                                      <i class="material-icons">lock</i>
+                                  </a>
+                              <?php } ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+
+              <div class="clearfix">
+                    <div class="hint-text">
+                        Showing <b><?php echo ($pageSize * $page + 1) . " - " . ($pageSize * $page + $pageSize <= $count ? $pageSize * $page + $pageSize : $count) ?></b> out of <b><?php echo $count ?></b> entries
+                    </div>
+                    <ul class="pagination">
+                        <div class="d-flex gap-3 me-3 align-items-center">
+                          <a class="text-dark btn" href="?page=<?php echo ($page) ?>&pageSize=<?php echo ($pageSize) ?>">
+                              <i class="fa fa-arrow-circle-left fs-4"></i>
+                          </a>
+                          <span class="fs-5"><?php echo $page + 1; ?></span>
+                          <a class="text-dark btn" href='<?php if ($pageSize * $page + $pageSize < $count) {
+                                          echo "?page=" . ($page + 2) . "&pageSize=$pageSize";
+                                      } else {
+                                          echo "javascript:void(0)";
+                                      } ?>'>
+                              <i class="fa fa-arrow-circle-right fs-4"></i>
+                          </a>
+                      </div>
+                    </ul>
                 </div>
-            </div>
+              </div>
           </div>
       </div>
-
     <?php
         require(base_path("views/admin/partials/dashboard-footer.php"));
     ?>
@@ -192,9 +252,28 @@
     </div>
   </div>
 
+  <div id="modalAddSuccess" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addUserSuccessModalLabel">Add User Success</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          User has been added successfully.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   <!-- Own script import here  -->
   <script src="../assets/dist/js/admin-index.js"></script>
+  <script src="../assets/dist/js/User.js"></script>
 
   
 

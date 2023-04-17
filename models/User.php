@@ -66,10 +66,30 @@ class User
     public static function all()
     {
         $db = App::resolve(Database::class);
-        $users = $db->query('SELECT * FROM users')->fetchAll();
-        return array_map(function($user) {
-            return new User($user['email'], $user['password'], $user['name'], $user['role'], $user['avatar']);
-        }, $users);
+        $stmt = "SELECT * FROM users";
+        $stmt_count = "SELECT COUNT(*) AS total_users FROM users";
+        $allUsers = $db->query($stmt, [])->get();
+        $count = $db->query($stmt_count, [])->get()[0]['total_users'];        
+        return [
+            "allUsers" => $allUsers,
+            "count" => $count
+        ];
+    }
+
+    public static function limit($pageSize = 10, $offset = 5)
+    {
+        $db = App::resolve(Database::class);
+        $stmt = "SELECT * 
+                FROM users
+                ORDER BY CASE WHEN users.role = 'admin' THEN 1 ELSE 2 END, email ASC
+                LIMIT " . $offset . " , $pageSize";
+        $stmt_count = "SELECT COUNT(*) AS num_users FROM users LIMIT " . $pageSize . " , $offset";
+        $users = $db->query($stmt, [])->get();
+        $count = $db->query($stmt_count, [])->get();        
+        return [
+            "users" => $users,
+            "count_limit" => $count
+        ];
     }
 
     public function __toString(){

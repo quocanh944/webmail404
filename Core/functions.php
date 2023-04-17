@@ -52,7 +52,6 @@ function login($user)
         'email' => $user['email'],
         'role' => $user['role']
     ];
-
     session_regenerate_id(true);
 }
 

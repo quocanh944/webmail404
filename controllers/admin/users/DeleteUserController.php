@@ -11,7 +11,7 @@
       $delUser = $data['userId'];
       $db->query('DELETE FROM users WHERE email = :userEmail;', [
               'userEmail' => $delUser
-          ]);
+      ]);
     }
   }
   else {
