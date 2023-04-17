@@ -14,9 +14,16 @@ require('partials/nav.php')
         </div>
         <div class="col-10">
             <div class="w-100 d-flex justify-content-between mt-3">
-                <div class="custom-control custom-checkbox ps-3">
-                    <input type="checkbox" />
+                <div class="d-flex custom-control custom-checkbox ps-3 ">
+                    <input class="float-start checkbox checkall" type="checkbox" name="checkbox checkall" onchange="showOption()"/>
+                    <a class="d-flex ps-3 gap-4 border-0 btnDeleteMail" id="btnDeleteMail">
+                        <i title="Send to trash" class="fa-solid fa-trash btnDeleteMail"></i>
+                    </a>
+                    <a class="border-0 d-flex ps-3 gap-4 btnSpam" id="btnSpam">
+                        <i title="Move to spam" class="fa-solid fa-exclamation btnSpam"></i>                    
+                    </a>
                 </div>
+                
                 <div class="d-flex gap-3 me-3">
                     <div>
                         <?php echo ($pageSize * $page + 1) . " - " . ($pageSize * $page + $pageSize <= $count ? $pageSize * $page + $pageSize : $count) . " of $count" ?>
@@ -39,7 +46,7 @@ require('partials/nav.php')
                         <tr class="<?php echo array_key_exists('is_read', $value) ? ($value['is_read'] ? '' : 'table-secondary') : '' ?>">
                             <td class="ps-3">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="cst7" />
+                                    <input type="checkbox" class="custom-control-input checkbox" id="cst7" onchange="showOption()"/>
                                     <label class="custom-control-label" for="cst7">&nbsp;
                                     </label>
                                 </div>
@@ -76,6 +83,33 @@ require('partials/nav.php')
             }
         })
     }
+    $(document).ready(function(){
+        $(".btnDeleteMail").hide();
+        $(".btnSpam").hide();
+
+        // check all only
+        $(".checkall").change(function(){
+            $('.checkbox').not(this).prop('checked', this.checked);
+            if(!$(".checkbox").is(":checked")){
+                $(".btnDeleteMail").hide();
+                $(".btnSpam").hide();
+            }
+        });
+    });
+
+    function showOption() // any checkbox
+    {
+        if($(".checkbox").is(":checked")){
+            $(".btnDeleteMail").show();
+            $(".btnSpam").show();
+        }
+        else{
+            $(".btnDeleteMail").hide();
+            $(".btnSpam").hide();
+        }
+    }
+    
+  
 </script>
 
 <?php require('partials/scriptCompose.php') ?>
