@@ -3803,5 +3803,5 @@ CREATE TABLE `locks` (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `locks`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`email`),
   ADD CONSTRAINT `locks_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
