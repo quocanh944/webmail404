@@ -1,13 +1,13 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="compose-modal-label" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-content" style="height: 90vh;">
       <div class="modal-header">
         <h5 class="d-none modal-title" id="compose-modal-label">New Email</h5>
         <h5 class="modal-title" id="compose-modal-label">New Email</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="overflow-y: scroll;">
         <form>
           <div class="form-group">
             <label for="subject-input">Subject:</label>
