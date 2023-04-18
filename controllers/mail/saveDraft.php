@@ -11,7 +11,6 @@ $db = App::resolve(Database::class);
 $content = $_POST['content'];
 $label = $_POST['label'];
 $sentTo = isset($_POST['sent_to']) ? explode(",", $_POST['sent_to']) : null;
-$cc = isset($_POST['cc']) ? explode(",", $_POST['cc']) : null;
 $user = $_SESSION['user']['email'];
 
 header('Content-Type: application/json');
@@ -47,7 +46,7 @@ if ($error) {
     echo json_encode(['Error' => $respone]);
 } else {
     $mail = new Mail($label, $content, $user, $sentTo, $cc);
-    $mailId = $mail->save();
+    $mailId = $mail->saveDraft();
 
     echo json_encode(['status' => "success", 'mailId' => $mailId]);
 }

@@ -4,14 +4,16 @@
         <!-- Left elements -->
         <div class="d-flex">
             <!-- Brand -->
-            <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
+            <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="/">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" height="20" alt="MDB Logo" loading="lazy" style="margin-top: 2px;" />
             </a>
 
             <!-- Search form -->
-            <form class="input-group w-auto my-auto d-none d-sm-flex">
-                <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" style="min-width: 125px;" />
-                <span class="input-group-text border-0 d-none d-lg-flex"><i class="fas fa-search"></i></span>
+            <form class="input-group w-auto my-auto d-none d-sm-flex" method="GET" action="/search">
+                <input name="key" autocomplete="off" type="search" class="form-control rounded" placeholder="Inbox:Label..." style="min-width: 125px;" />
+                <button type="submit" class="border-0">
+                    <span class="input-group-text border-0 d-none d-lg-flex"><i class="fas fa-search"></i></span>
+                </button>
             </form>
         </div>
         <!-- Left elements -->

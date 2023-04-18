@@ -9,9 +9,18 @@ if ($_SESSION['user']['role'] == 'user') {
     $email = $_SESSION['user']['email'];
     $id = $_GET['id'] + 0;
 
-    $mail = $db->query("select mail.*, users.name, users.avatar, inbox.is_starred from mail, inbox, users where inbox.email = :email AND inbox.mail_id = $id AND mail.id = $id AND users.email = mail.sent_by", [
-        'email' => $email
-    ])->findOrFail();
+    $sent = $db->query("select mail.*, users.name, users.avatar, inbox.is_starred from mail, users, inbox where mail.sent_by = :email AND mail.id = $id AND inbox.mail_id = $id AND users.email = mail.sent_by", ["email" => $email])->find();
+
+    $mail = null;
+
+    if (!$sent) {
+        $mail = $db->query("select mail.*, users.name, users.avatar, inbox.is_starred from mail, inbox, users where inbox.email = :email AND inbox.mail_id = $id AND mail.id = $id AND users.email = mail.sent_by", [
+            'email' => $email
+        ])->findOrFail();
+        // dd($mail);
+    } else {
+        $mail = $sent;
+    }
 
     $sent_to = $db->query("select user_email from mail_sent_to where mail_sent_to.mail_id = $id AND mail_sent_to.user_email <> :email", [
         'email' => $email
@@ -49,6 +58,13 @@ if ($_SESSION['user']['role'] == 'user') {
     //     'bcc' => $temp_bcc,
     // ]);
     
+    // dd([
+    //     'mail' => $mail,
+    //     'sent_to' => $temp_sent_to,
+    //     'cc' => $temp_cc,
+    //     'bcc' => $temp_bcc,
+    // ]);
+
     view("mail.view.php", [
         'mail' => $mail,
         'sent_to' => $temp_sent_to,
