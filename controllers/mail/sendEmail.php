@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Validator;
 use models\Mail;
 use models\User;
 
@@ -16,6 +17,13 @@ header('Content-Type: application/json');
 
 if (!isset($content) || !isset($label) || !isset($sentTo)) {
     echo json_encode(['Error' => "Payload not match"]);
+    die();
+}
+
+$badCheck = Validator::badkeyword($content);
+
+if ($badCheck[0] != true) {
+    echo json_encode(['Error' => "Bad keyword ($badCheck[1]) found in content."]);
     die();
 }
 
