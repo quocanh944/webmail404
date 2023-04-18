@@ -1,0 +1,43 @@
+<?php
+
+use Core\App;
+use Core\Database;
+use models\Inbox;
+
+if ($_SESSION['user']['role'] == 'user') {
+    $db = App::resolve(Database::class);
+    $email = $_SESSION['user']['email'];
+    $key = $_GET["key"];
+    $user = $db->query('select * from users where email = :email', [
+        'email' => $email
+    ])->find();
+    $page = isset($_GET['page']) ? $_GET['page'] - 1 : 0;
+    $pageSize = isset($_GET['pageSize']) ? $_GET['pageSize'] : 20;
+
+    if ($page < 0) {
+        $page = 0;
+    }
+
+    if ($pageSize > 20 || $pageSize < 10) {
+        $pageSize = 20;
+    }
+
+    $content = explode(":", $key);
+
+    if (count($content) == 1) {
+        ["allMails" => $all_mails, "count" => $count] = Inbox::getSearchMail($email, $key, "inbox", $page, $pageSize);
+    } else {
+        ["allMails" => $all_mails, "count" => $count] = Inbox::getSearchMail($email, $content[1], strtolower($content[0]), $page, $pageSize);
+    }
+
+    
+    view("index.view.php", [
+        'all_mails' => $all_mails,
+        'user' => $user,
+        'page' => $page,
+        'pageSize' => $pageSize,
+        'count' => $count
+    ]);
+} else {
+    header('location: /admin');
+}

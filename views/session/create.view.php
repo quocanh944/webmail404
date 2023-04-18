@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="../assets/dist/css/login.css">
 
-<main style="padding-top: 10%; padding-bottom: 10%">
+<main>
   <div id="wrapper">
       <form class="" action="/session" method="POST">
         <h3>Đăng nhập</h3>

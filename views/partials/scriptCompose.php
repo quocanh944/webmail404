@@ -5,13 +5,39 @@
             data: payload,
             success: (data, status) => {
                 console.log(data);
-                // window.location.reload();
+                console.log(data.Error);
+                console.log(!(data.status == "success"));
+                if (!(data.status == "success")) {
+                    if (data.Error["Invalid Email"]) {
+                        let msg = ""
+                        for (let index = 0; index < data.Error["Invalid Email"].length; index++) {
+                            const element = data.Error["Invalid Email"][index];
+                            msg += element + ", "
+                        }
+                        alert("Invalid Email: " + msg)
+                    } else {
+                        alert(data.Error)
+                    }
+                } else {
+                    // window.location.reload();
+                }
+            }
+        })
+    }
+
+    const saveDraft = (payload) => {
+        $.ajax('/saveDraft', {
+            method: 'post',
+            data: payload,
+            success: (data, status) => {
+                console.log(data);
+                window.location.reload();
             }
         })
     }
     $(() => {
         $('#saveDraft').click(() => {
-            sendEmail({
+            saveDraft({
                 'content': myEditor.getContent(),
                 'label': $('#subject-input').val(),
                 'sent_to': $('#sentTo').val(),
@@ -19,6 +45,7 @@
                 'bcc': $('#bccTo').val()
             })
         })
+
         $('#sendEmail').click(() => {
             sendEmail({
                 'content': myEditor.getContent(),
