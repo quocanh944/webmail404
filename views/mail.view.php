@@ -68,7 +68,6 @@ require('partials/nav.php')
                                 </a>
                             <?php } ?>
                         </div>
-
                     </div>
                 </div>
             </div>
