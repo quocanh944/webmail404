@@ -20,6 +20,8 @@ $router->post('/changeStarred', 'controllers/mail/changeStarred.php')->only('aut
 $router->post('/sendEmail', 'controllers/mail/sendEmail.php')->only('auth');
 $router->post('/saveDraft', 'controllers/mail/saveDraft.php')->only('auth');
 
+$router->get('/download', 'controllers/mail/download.php')->only('auth');
+
 
 
 // Admin

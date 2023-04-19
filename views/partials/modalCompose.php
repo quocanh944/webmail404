@@ -8,28 +8,32 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" style="overflow-y: scroll;">
-        <form>
-          <div class="form-group">
+        <form id="form" method="post" enctype="multipart/form-data">
+          <div class="form-group mb-3">
             <label for="subject-input">Subject:</label>
-            <input type="text" class="form-control" id="subject-input" name="subject">
+            <input type="text" class="form-control" id="subject-input" name="label">
           </div>
-          <div class="form-group" id="tags-input-group">
+          <div class="form-group mb-3" id="tags-input-group">
             <label>To: </label>
             <div id="input_to" class="form-control mb-2"></div>
-            <input type="text" class="inputTags" id="sentTo" hidden />
+            <input type="text" class="inputTags" id="sentTo" name="sent_to" hidden />
           </div>
-          <div class="form-group" id="tags-input-group">
+          <div class="form-group mb-3" id="tags-input-group">
             <label>Cc: </label>
             <div id="input_cc" class="form-control mb-2"></div>
-            <input type="text" class="inputTags" id="ccTo" hidden />
+            <input type="text" class="inputTags" id="ccTo" hidden name="cc" />
           </div>
-          <div class="form-group" id="tags-input-group">
+          <div class="form-group mb-3" id="tags-input-group">
             <label>Bcc: </label>
             <div id="input_bcc" class="form-control mb-2"></div>
-            <input type="text" class="inputTags" id="bccTo" hidden />
+            <input type="text" class="inputTags" id="bccTo" hidden name="bcc"/>
           </div>
-          <div class="form-group">
-            <textarea class="w-100" id="myTextarea"></textarea>
+          <div class="form-group mb-3">
+            <textarea class="w-100" id="myTextarea" name="content"></textarea>
+          </div>
+          <div class="form-group mb-3">
+            <label for="formFile" class="form-label">Attachments: </label>
+            <input name="attachment[]" class="form-control" type="file" id="formFile" multiple>
           </div>
         </form>
       </div>
