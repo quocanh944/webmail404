@@ -1,8 +1,21 @@
 <script>
     const sendEmail = (payload) => {
+        // let data = new FormData(document.getElementById("form"));
+        // data.getAll('attachment').forEach((e) => {
+        //     console.log(e)
+        // });
+        // console.log(document.getElementById("form"));
+
+        let data = new FormData(document.getElementById('form'));
+        
+        console.log(data.getAll('attachment'))
+
         $.ajax('/sendEmail', {
             method: 'post',
-            data: payload,
+            data: new FormData(document.getElementById('form')),
+            contentType: false,
+            cache: false,
+            processData:false,
             success: (data, status) => {
                 console.log(data);
                 console.log(data.Error);
@@ -42,7 +55,8 @@
                 'label': $('#subject-input').val(),
                 'sent_to': $('#sentTo').val(),
                 'cc': $('#ccTo').val(),
-                'bcc': $('#bccTo').val()
+                'bcc': $('#bccTo').val(),
+                'attachments': $('#formFile').val()
             })
         })
 
@@ -52,7 +66,8 @@
                 'label': $('#subject-input').val(),
                 'sent_to': $('#sentTo').val(),
                 'cc': $('#ccTo').val(),
-                'bcc': $('#bccTo').val()
+                'bcc': $('#bccTo').val(),
+                'attachments': $('#formFile').val()
             })
         })
 
