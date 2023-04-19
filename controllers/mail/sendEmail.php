@@ -1,7 +1,5 @@
 <?php
 
-use Core\App;
-use Core\Database;
 use Core\Validator;
 use models\Mail;
 use models\User;
@@ -12,14 +10,8 @@ $content = $_POST['content'];
 $label = $_POST['label'];
 $sentTo = isset($_POST['sent_to']) ? explode(",", $_POST['sent_to']) : null;
 $cc = isset($_POST['cc']) ? explode(",", $_POST['cc']) : null;
+$bcc = isset($_POST['bcc']) ? explode(",", $_POST['bcc']) : null;
 $user = $_SESSION['user']['email'];
-
-// dd([basename($_FILES['attachment']['name'][0]), $_POST, getcwd()]);
-
-// for ($index = 0; $index < count($_FILES["attachment"]['size']); $index++) {
-    
-// }
-
 
 header('Content-Type: application/json');
 
@@ -38,6 +30,7 @@ if ($badCheck[0] != true) {
 $fileCheck = Validator::fileSizeCheck();
 if (count($fileCheck) > 0) {
     echo json_encode(["Error" => $fileCheck]);
+    die();
 }
 
 $respone = [];
@@ -58,7 +51,7 @@ foreach ($sentTo as $email) {
 if ($error) {
     echo json_encode(['Error' => $respone]);
 } else {
-    $mail = new Mail($label, $content, $user, $sentTo, $cc, $_FILES['attachment']);
+    $mail = new Mail($label, $content, $user, $sentTo, $cc, $bcc, $_FILES['attachment']);
     $mailId = $mail->save();
 
     echo json_encode(['status' => "success", 'mailId' => $mailId]);

@@ -1,14 +1,5 @@
 <script>
     const sendEmail = (payload) => {
-        // let data = new FormData(document.getElementById("form"));
-        // data.getAll('attachment').forEach((e) => {
-        //     console.log(e)
-        // });
-        // console.log(document.getElementById("form"));
-
-        let data = new FormData(document.getElementById('form'));
-        
-        console.log(data.getAll('attachment'))
 
         $.ajax('/sendEmail', {
             method: 'post',
@@ -32,7 +23,7 @@
                         alert(data.Error)
                     }
                 } else {
-                    // window.location.reload();
+                    window.location.reload();
                 }
             }
         })

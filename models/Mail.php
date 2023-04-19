@@ -13,9 +13,10 @@ class Mail
     private $sent_by;
     private $sent_to;
     private $cc;
+    private $bcc;
     private $attachments;
 
-    public function __construct($label, $content, $sentBy, $sentTo, $cc, $attachments)
+    public function __construct($label, $content, $sentBy, $sentTo, $cc, $bcc, $attachments)
     {
         $this->label = $label;
         $this->content = $content;
@@ -23,6 +24,7 @@ class Mail
         $this->sent_by = $sentBy;
         $this->sent_to = $sentTo;
         $this->cc = $cc;
+        $this->bcc = $bcc;
         $this->attachments = $attachments;
     }
 
@@ -42,6 +44,7 @@ class Mail
         $stm3 = "INSERT INTO inbox (mail_id , email , is_read , is_starred , is_draft , is_trash , is_spam)
              VALUES ($mailId , :user_sent_to , 0 , 0 , 0 , 0 , 0)";
         $stm4 = "INSERT INTO mail_cc (email, mail_id) VALUES ( :user_cc, $mailId )";
+        $stm6 = "INSERT INTO mail_bcc (email, mail_id) VALUES ( :user_bcc, $mailId )";
 
         foreach ($this->sent_to as $userSentTo) {
             $db->query($stm2, [
@@ -61,15 +64,24 @@ class Mail
             ]);
         }
 
+        foreach ($this->bcc as $userBCC) {
+            $db->query($stm6, [
+                'user_bcc' => $userBCC
+            ]);
+            $db->query($stm3, [
+                'user_sent_to' => $userBCC
+            ]);
+        }
+
         $stm5 = "INSERT INTO mail_attachments (mail_id, attachment) VALUES ($mailId , :attachment)";
         mkdir('./../uploads/' . $mailId);
 
-        for ($index = 0; $index < count($_FILES["attachment"]['size']); $index++) {
-            $target_file =  "./../uploads/$mailId/" . basename($_FILES["attachment"]["name"][$index]);
+        for ($index = 0; $index < count($this->attachments['size']); $index++) {
+            $target_file =  "./../uploads/$mailId/" . basename($this->attachments["name"][$index]);
             $db->query($stm5, [
-                'attachment' => basename($_FILES["attachment"]["name"][$index])
+                'attachment' => basename($this->attachments["name"][$index])
             ]);
-            move_uploaded_file($_FILES["attachment"]["tmp_name"][$index], $target_file);
+            move_uploaded_file($this->attachments["tmp_name"][$index], $target_file);
         }
 
         return $mailId;
