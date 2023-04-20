@@ -62,7 +62,7 @@ require('partials/nav.php')
                         <h2>Attachments: </h2>
                         <div>
                             <?php foreach ($attachments as $attachment) {?>
-                                <a class="border-0 d-flex gap-3" href="/download?id=<?php echo $mail['id'] . "&path=$attachment" ?>" download>
+                                <a class="border-0 d-flex gap-3" href="/download?id=<?php echo $mail['id'] . "&path=$attachment" ?>">
                                     <p><?php echo $attachment ?> </p>
                                     <i title="Download File" class="fa fa-download"></i>
                                 </a>
