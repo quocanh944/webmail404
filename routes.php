@@ -19,6 +19,7 @@ $router->delete('/session', 'controllers/session/destroy.php')->only('auth');
 $router->post('/changeStarred', 'controllers/mail/changeStarred.php')->only('auth');
 $router->post('/sendEmail', 'controllers/mail/sendEmail.php')->only('auth');
 $router->post('/saveDraft', 'controllers/mail/saveDraft.php')->only('auth');
+$router->post('/markUnRead', 'controllers/mail/markUnRead.php')->only('auth');
 
 $router->get('/download', 'controllers/mail/download.php')->only('auth');
 
