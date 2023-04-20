@@ -20,15 +20,6 @@
               <div class="container my-4">
                 <h1 class="mb-4">Admin Settings</h1>
                 <?php
-// Lấy dữ liệu từ server và gán vào biến $settings
-                  $settings = array(
-                    "id" => 1,
-                    "max_recipients" => 123,
-                    "max_email_size" => 123,
-                    "max_attachments" => 123,
-                    "max_attachment_size" => 123,
-                  );
-
                   // Gán giá trị cho thuộc tính title của từng ô input
                   $maxRecipientsTitle = "Enter the maximum number of recipients allowed per email.";
                   $maxSizeTitle = "Enter the maximum email size allowed in MB.";
