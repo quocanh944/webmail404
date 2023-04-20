@@ -17,6 +17,11 @@
         <input type="submit" value="Sign in" id="btn-login">
   
         <br><br>
+        <div>
+            <?php if (isset($errors['email'])) : ?>
+                <li class="text-danger mt-2"><?= $errors['email'] ?></li>
+            <?php endif; ?>
+        </div>
         <div class="text-center">
           <p>Not a member? <a href="register">Register</a></p>
         </div>
