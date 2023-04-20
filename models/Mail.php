@@ -56,32 +56,40 @@ class Mail
         }
 
         foreach ($this->cc as $userCC) {
-            $db->query($stm4, [
-                'user_cc' => $userCC
-            ]);
-            $db->query($stm3, [
-                'user_sent_to' => $userCC
-            ]);
+            $toUser = User::findById($userCC);
+            if (isset($toUser['email'])) {
+                $db->query($stm4, [
+                    'user_cc' => $userCC
+                ]);
+                $db->query($stm3, [
+                    'user_sent_to' => $userCC
+                ]);
+            }
         }
 
         foreach ($this->bcc as $userBCC) {
-            $db->query($stm6, [
-                'user_bcc' => $userBCC
-            ]);
-            $db->query($stm3, [
-                'user_sent_to' => $userBCC
-            ]);
+            $toUser = User::findById($userCC);
+            if (isset($toUser['email'])) {
+                $db->query($stm6, [
+                    'user_bcc' => $userBCC
+                ]);
+                $db->query($stm3, [
+                    'user_sent_to' => $userBCC
+                ]);
+            }
         }
 
         $stm5 = "INSERT INTO mail_attachments (mail_id, attachment) VALUES ($mailId , :attachment)";
         mkdir('./../uploads/' . $mailId);
 
         for ($index = 0; $index < count($this->attachments['size']); $index++) {
-            $target_file =  "./../uploads/$mailId/" . basename($this->attachments["name"][$index]);
-            $db->query($stm5, [
-                'attachment' => basename($this->attachments["name"][$index])
-            ]);
-            move_uploaded_file($this->attachments["tmp_name"][$index], $target_file);
+            if ($this->attachments['error'][$index] == 0) {
+                $target_file =  "./../uploads/$mailId/" . basename($this->attachments["name"][$index]);
+                $db->query($stm5, [
+                    'attachment' => basename($this->attachments["name"][$index])
+                ]);
+                move_uploaded_file($this->attachments["tmp_name"][$index], $target_file);
+            }
         }
 
         return $mailId;
@@ -142,13 +150,13 @@ class Mail
         ])->get();
 
         $attachments = $db->query("select attachment from mail_attachments where mail_attachments.mail_id = $id")->get();
-        
+
         $temp_attachments = [];
-        
+
         foreach ($attachments as $attachment) {
             $temp_attachments[] = $attachment['attachment'];
         }
-        
+
         $temp_cc = [];
 
         foreach ($cc as $email) {

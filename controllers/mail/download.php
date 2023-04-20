@@ -22,9 +22,9 @@ if (!$sent) {
 
 if (isset($_GET['id'])) {
     //Read the filename
-    $filename = $_GET['path'];
+    $filename = "./../uploads/" . $_GET['id'] . "/" . $_GET['path'];
     //Check the file exists or not
-    if (file_exists("./../uploads/" . $_GET['id'] . "/" . $filename)) {
+    if (file_exists($filename)) {
 
         //Define header information
         header('Content-Description: File Transfer');
@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
         flush();
 
         //Read the size of the file
-        readfile("./../uploads/" . $_GET['id'] . "/" . $filename);
+        readfile($filename);
 
         //Terminate from the script
         die();
