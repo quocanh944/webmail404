@@ -5,7 +5,7 @@
 <main>
   <div id="wrapper">
       <form class="" action="/session" method="POST">
-        <h3>Đăng nhập</h3>
+        <h3>Sign in</h3>
         <div class="form-group">
           <input type="text" name="email" id="email" required>
           <label for="">Email</label>
