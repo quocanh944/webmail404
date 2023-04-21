@@ -17,7 +17,7 @@
         <input type="submit" value="Sign in" id="btn-login">
   
         <br><br>
-        <div>
+        <div style="max-width: 250px;" class="m-auto">
             <?php if (isset($errors['email'])) : ?>
                 <li class="text-danger mt-2"><?= $errors['email'] ?></li>
             <?php endif; ?>
