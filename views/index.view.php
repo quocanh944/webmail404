@@ -14,18 +14,26 @@ require('partials/nav.php')
         </div>
         <div class="col-10">
             <div class="w-100 d-flex justify-content-between mt-3">
-                <div class="custom-control custom-checkbox ps-3">
-                    <input type="checkbox" />
+                <div class="d-flex custom-control custom-checkbox ps-3 ">
+                    <input class="float-start checkbox checkall" type="checkbox" name="checkbox checkall" onchange="showOption()" />
+                    <a class="d-flex ps-3 gap-4 border-0 btnDeleteMail" id="btnDeleteMail">
+                        <i title="Send to trash" class="fa-solid fa-trash btnDeleteMail"></i>
+                    </a>
+                    <a class="border-0 d-flex ps-3 gap-4 btnSpam" id="btnSpam">
+                        <i title="Move to spam" class="fa-solid fa-exclamation btnSpam"></i>
+                    </a>
                 </div>
+
                 <div class="d-flex gap-3 me-3">
                     <div>
                         <?php echo ($pageSize * $page + 1) . " - " . ($pageSize * $page + $pageSize <= $count ? $pageSize * $page + $pageSize : $count) . " of $count" ?>
+                        <!-- <?php var_dump($_GET)?> -->
                     </div>
-                    <a href="?page=<?php echo ($page) ?>&pageSize=<?php echo ($pageSize) ?>">
+                    <a href="?<?php echo isset($_GET['url']) && $_GET['url'] == 'search' ? "key=" . $_GET['key'] . "&" : ''?>page=<?php echo ($page) ?>&pageSize=<?php echo ($pageSize) ?>">
                         <i class="fa-solid fa-angle-left"></i>
                     </a>
-                    <a href='<?php if ($pageSize * $page + $pageSize < $count) {
-                                    echo "?page=" . ($page + 2) . "&pageSize=$pageSize";
+                    <a href='?<?php echo isset($_GET['url']) && $_GET['url'] == 'search' ? "key=" . $_GET['key'] . "&" : ''?><?php if ($pageSize * $page + $pageSize < $count) {
+                                    echo "page=" . ($page + 2) . "&pageSize=$pageSize";
                                 } else {
                                     echo "javascript:void(0)";
                                 } ?>'>
@@ -39,7 +47,7 @@ require('partials/nav.php')
                         <tr class="<?php echo array_key_exists('is_read', $value) ? ($value['is_read'] ? '' : 'table-secondary') : '' ?>">
                             <td class="ps-3">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="cst7" />
+                                    <input type="checkbox" class="custom-control-input checkbox" id="cst7" onchange="showOption()" />
                                     <label class="custom-control-label" for="cst7">&nbsp;
                                     </label>
                                 </div>
@@ -53,8 +61,41 @@ require('partials/nav.php')
                                     <?php echo !urlIs('/sent') ? $value['sent_by'] : '' ?>
                                 </span>
                             </td>
-                            <td> <a class="text-decoration-none" href="mail?id=<?php echo $value['id'] ?>"><span class="font-light text-dark"> <?php echo $value['label'] ?> </span> </a></td>
-                            <td class="text-muted font-light"><?php echo $value['created_at'] ?></td>
+                            <td>
+                                <a class="text-decoration-none" href="mail?id=<?php echo $value['id'] ?>">
+                                    <span class="font-light text-dark">
+                                        <?php echo $value['label'] ?>
+                                    </span>
+                                </a>
+                            </td>
+                            <td class="text-muted font-light">
+                                <?php echo $value['created_at'] ?>
+                            </td>
+                            <td>
+                                <a class="options" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-vertical"></i>
+                                </a>
+                                <ul class="dropdown-menu position-absolute top-42" aria-labelledby="dropdown04" style="left: -112px;">
+                                    <li>
+                                        <a class="dropdown-item" href="#">Reply</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Move to Spam</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Move to Trash</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Move to Archive</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Move to Draft</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Mark as Unread</a>
+                                    </li>
+                                </ul>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -75,6 +116,30 @@ require('partials/nav.php')
                 window.location.reload();
             }
         })
+    }
+    $(document).ready(function() {
+        $(".btnDeleteMail").hide();
+        $(".btnSpam").hide();
+
+        // check all only
+        $(".checkall").change(function() {
+            $('.checkbox').not(this).prop('checked', this.checked);
+            if (!$(".checkbox").is(":checked")) {
+                $(".btnDeleteMail").hide();
+                $(".btnSpam").hide();
+            }
+        });
+    });
+
+    function showOption() // any checkbox
+    {
+        if ($(".checkbox").is(":checked")) {
+            $(".btnDeleteMail").show();
+            $(".btnSpam").show();
+        } else {
+            $(".btnDeleteMail").hide();
+            $(".btnSpam").hide();
+        }
     }
 </script>
 

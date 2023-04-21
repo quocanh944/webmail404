@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2023 at 06:21 PM
+-- Generation Time: Apr 19, 2023 at 03:14 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `404webmail_new`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `badkeywords`
+--
+
+CREATE TABLE `badkeywords` (
+  `ID` int(11) NOT NULL,
+  `content` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `badkeywords`
+--
+
+INSERT INTO `badkeywords` (`ID`, `content`) VALUES
+(3, 'ccasdasdas'),
+(4, 'dcm');
 
 -- --------------------------------------------------------
 
@@ -1051,10 +1070,40 @@ INSERT INTO `inbox` (`mail_id`, `email`, `is_read`, `is_starred`, `is_draft`, `i
 (1006, 'dejah30@example.org', 0, 0, 0, 0, 0),
 (1006, 'eda29@example.com', 0, 0, 0, 0, 0),
 (1006, 'gabrielle07@example.net', 0, 0, 0, 0, 0),
-(1007, 'damien87@example.com', 0, 0, 0, 0, 0),
-(1007, 'dejah30@example.org', 0, 0, 0, 0, 0),
-(1007, 'eda29@example.com', 0, 0, 0, 0, 0),
-(1007, 'gabrielle07@example.net', 0, 0, 0, 0, 0);
+(1007, 'damien87@example.com', 0, 1, 0, 0, 0),
+(1007, 'dejah30@example.org', 0, 1, 0, 0, 0),
+(1007, 'eda29@example.com', 0, 1, 0, 0, 0),
+(1007, 'gabrielle07@example.net', 0, 1, 0, 0, 0),
+(1008, 'test1@gmail.com', 0, 0, 0, 0, 0),
+(1010, 'gabrielle07@example.net', 0, 0, 1, 0, 0),
+(1010, 'johnson.godfrey@example.net', 0, 0, 1, 0, 0),
+(1013, 'gabrielle07@example.net', 0, 0, 0, 0, 0),
+(1013, 'johnson.godfrey@example.net', 0, 0, 0, 0, 0),
+(1013, 'nwalsh@example.org', 0, 0, 0, 0, 0),
+(1014, 'qwisozk@example.net', 0, 0, 0, 0, 0),
+(1014, 'schowalter.terrell@example.com', 0, 0, 0, 0, 0),
+(1014, 'test1@gmail.com', 0, 0, 0, 0, 0),
+(1014, 'test2@gmail.com', 0, 0, 0, 0, 0),
+(1015, 'damien87@example.com', 0, 0, 0, 0, 0),
+(1015, 'schowalter.terrell@example.com', 0, 0, 0, 0, 0),
+(1015, 'test1@gmail.com', 0, 0, 0, 0, 0),
+(1015, 'test2@gmail.com', 0, 0, 0, 0, 0),
+(1016, 'test1@gmail.com', 0, 0, 0, 0, 0),
+(1016, 'test2@gmail.com', 0, 0, 0, 0, 0),
+(1017, 'test1@gmail.com', 0, 0, 0, 0, 0),
+(1017, 'test2@gmail.com', 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `locks`
+--
+
+CREATE TABLE `locks` (
+  `email` varchar(50) NOT NULL,
+  `lock_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `lock_reason` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2084,7 +2133,35 @@ INSERT INTO `mail` (`id`, `label`, `content`, `created_at`, `sent_by`) VALUES
 (1004, 'quocanh', '<p>asdasdasd</p>', '2023-04-09 15:32:59', 'cathrine10@example.org'),
 (1005, 'Test 1', '<p>Gửi cho 4 người</p>', '2023-04-09 16:10:06', 'cathrine10@example.org'),
 (1006, 'Test 2', '<p>Gửi cho 4 người&nbsp;</p>', '2023-04-09 16:12:09', 'cathrine10@example.org'),
-(1007, 'Test 3', '<p>Gửi cho 4 người&nbsp;</p>', '2023-04-09 16:12:50', 'cathrine10@example.org');
+(1007, 'Test 3', '<p>Gửi cho 4 người&nbsp;</p>', '2023-04-09 16:12:50', 'cathrine10@example.org'),
+(1008, 'quocanh', '<p>Hello I\'m here</p>', '2023-04-13 14:44:49', 'test2@gmail.com'),
+(1010, 'Last test', '<p style=\"text-align: center;\">haha</p>\n<h1 style=\"text-align: left;\">Hello <span style=\"color: rgb(186, 55, 42);\">Testing</span></h1>', '2023-04-18 14:22:05', 'cathrine10@example.org'),
+(1011, 'quocanh', '<p>asdasdasdasdsa</p>', '2023-04-18 14:22:40', 'cathrine10@example.org'),
+(1012, 'quocanh', '<p>asdasdasdasdsa</p>', '2023-04-18 14:22:44', 'cathrine10@example.org'),
+(1013, '404Webmail', '<p style=\"text-align: center;\">Testing CC</p>\n<p style=\"text-align: center;\">Testing CC</p>\n<p style=\"text-align: center;\">Testing CC</p>\n<p style=\"text-align: center;\">Testing CC</p>\n<p style=\"text-align: center;\">Testing CC</p>\n<p style=\"text-align: center;\">Testing CC</p>', '2023-04-18 14:37:07', 'cathrine10@example.org'),
+(1014, 'Testing CC', '<p>Testing CCTesting CCTesting CCTesting CCTesting CCTesting CC</p>', '2023-04-18 14:39:18', 'cathrine10@example.org'),
+(1015, 'This is a real mail', '<p>Hi team,<br><br>Thanks for taking the time to attend the meeting on February&nbsp;6 and sharing your updates with the rest of the team. It&rsquo;s exciting to see the progress and celebrate the small wins in the last quarter.<br><br>In the Kick-off meeting, we discussed several important updates for the Quarter I 2023, as well as tips and tricks to enhance students\' engagement. I&rsquo;m summarizing the topics including the&nbsp;highlights in this recap to hold ourselves accountable.<br><br><a href=\"https://docs.google.com/presentation/d/1R9AIfczNJxoCbNkwtnAXGXF7BQBlem92cR6zA61qPzA/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://docs.google.com/presentation/d/1R9AIfczNJxoCbNkwtnAXGXF7BQBlem92cR6zA61qPzA/edit?usp%3Dsharing&amp;source=gmail&amp;ust=1681909342596000&amp;usg=AOvVaw2kEs5FVWgG7x3FEGWJ9qSZ\">Academic Q1 2023 Kick-Off</a></p>\n<div>\n<ul>\n<li>Quarter IV 2022 Reflection</li>\n<li>Quarter I 2023 Goals</li>\n<li>Updates</li>\n<li>Student Engagement &amp; Collaboration Tips and Tricks</li>\n</ul>\nHighlights<br>\n<ul>\n<li>Converted&nbsp;<strong>168 new students</strong>&nbsp;out of 407 trials in October, November, and&nbsp;December 2022</li>\n<li>Monthly event,&nbsp;<strong>\"Shaping Our World\" in February</strong></li>\n<li><strong>Recruitment need</strong>, 1 Senior Teacher at NLB&nbsp;+ 1 Academic Coordinator</li>\n<li>Summer Program, to be updated</li>\n<li><strong>Group Progress Tracking</strong>&nbsp;on LMS</li>\n<li><strong>End of Module Project Expectations</strong></li>\n<li>Group Supervisor, contact point if you need Academic support</li>\n<li>Tips and Tricks for Students Engagement and Collaboration</li>\n</ul>\nPlease review the slide and complete this&nbsp;<a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc0aOLnPlDLzU_xBjvqba51uK1KO_UIy8UTtrkxL43N8s4EuQ/viewform?usp=pp_url\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://docs.google.com/forms/d/e/1FAIpQLSc0aOLnPlDLzU_xBjvqba51uK1KO_UIy8UTtrkxL43N8s4EuQ/viewform?usp%3Dpp_url&amp;source=gmail&amp;ust=1681909342596000&amp;usg=AOvVaw3YFNvNFgo8nSwT672yoFrK\">quiz</a>&nbsp;to show your alignment with the latest update.<br><br>Looking forward to seeing you all in the next meeting!<br><br>Cheers,<br>Hannah and the Teaching team</div>', '2023-04-18 14:56:18', 'cathrine10@example.org'),
+(1016, 'Test send mail with attachment', '<p>Anyways, here is a fuller example than the sparce one in the documentation above:<br><br><span class=\"default\">&lt;?php<br></span><span class=\"keyword\">foreach (</span><span class=\"default\">$_FILES</span><span class=\"keyword\">[</span><span class=\"string\">\"attachment\"</span><span class=\"keyword\">][</span><span class=\"string\">\"error\"</span><span class=\"keyword\">] as </span><span class=\"default\">$key </span><span class=\"keyword\">=&gt; </span><span class=\"default\">$error</span><span class=\"keyword\">)<br>{<br>&nbsp; &nbsp; &nbsp;&nbsp; </span><span class=\"default\">$tmp_name </span><span class=\"keyword\">= </span><span class=\"default\">$_FILES</span><span class=\"keyword\">[</span><span class=\"string\">\"attachment\"</span><span class=\"keyword\">][</span><span class=\"string\">\"tmp_name\"</span><span class=\"keyword\">][</span><span class=\"default\">$key</span><span class=\"keyword\">];<br>&nbsp; &nbsp; &nbsp;&nbsp; if (!</span><span class=\"default\">$tmp_name</span><span class=\"keyword\">) continue;<br><br>&nbsp; &nbsp; &nbsp;&nbsp; </span><span class=\"default\">$name </span><span class=\"keyword\">= </span><span class=\"default\">basename</span><span class=\"keyword\">(</span><span class=\"default\">$_FILES</span><span class=\"keyword\">[</span><span class=\"string\">\"attachment\"</span><span class=\"keyword\">][</span><span class=\"string\">\"name\"</span><span class=\"keyword\">][</span><span class=\"default\">$key</span><span class=\"keyword\">]);<br><br>&nbsp; &nbsp; if (</span><span class=\"default\">$error </span><span class=\"keyword\">== </span><span class=\"default\">UPLOAD_ERR_OK</span><span class=\"keyword\">)<br>&nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; &nbsp; if ( </span><span class=\"default\">move_uploaded_file</span><span class=\"keyword\">(</span><span class=\"default\">$tmp_name</span><span class=\"keyword\">, </span><span class=\"string\">\"/tmp/\"</span><span class=\"keyword\">.</span><span class=\"default\">$name</span><span class=\"keyword\">) )<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class=\"default\">$uploaded_array</span><span class=\"keyword\">[] .= </span><span class=\"string\">\"Uploaded file \'\"</span><span class=\"keyword\">.</span><span class=\"default\">$name</span><span class=\"keyword\">.</span><span class=\"string\">\"\'.&lt;br/&gt;\\n\"</span><span class=\"keyword\">;<br>&nbsp; &nbsp; &nbsp; &nbsp; else<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class=\"default\">$errormsg </span><span class=\"keyword\">.= </span><span class=\"string\">\"Could not move uploaded file \'\"</span><span class=\"keyword\">.</span><span class=\"default\">$tmp_name</span><span class=\"keyword\">.</span><span class=\"string\">\"\' to \'\"</span><span class=\"keyword\">.</span><span class=\"default\">$name</span><span class=\"keyword\">.</span><span class=\"string\">\"\'&lt;br/&gt;\\n\"</span><span class=\"keyword\">;<br>&nbsp; &nbsp; }<br>&nbsp; &nbsp; else </span><span class=\"default\">$errormsg </span><span class=\"keyword\">.= </span><span class=\"string\">\"Upload error. [\"</span><span class=\"keyword\">.</span><span class=\"default\">$error</span><span class=\"keyword\">.</span><span class=\"string\">\"] on file \'\"</span><span class=\"keyword\">.</span><span class=\"default\">$name</span><span class=\"keyword\">.</span><span class=\"string\">\"\'&lt;br/&gt;\\n\"</span><span class=\"keyword\">;<br>}<br></span><span class=\"default\">?&gt;</span></p>', '2023-04-19 12:26:43', 'damien87@example.com'),
+(1017, 'Test send mail with attachment', '<p>Anyways, here is a fuller example than the sparce one in the documentation above:<br><br><span class=\"default\">&lt;?php<br></span><span class=\"keyword\">foreach (</span><span class=\"default\">$_FILES</span><span class=\"keyword\">[</span><span class=\"string\">\"attachment\"</span><span class=\"keyword\">][</span><span class=\"string\">\"error\"</span><span class=\"keyword\">] as </span><span class=\"default\">$key </span><span class=\"keyword\">=&gt; </span><span class=\"default\">$error</span><span class=\"keyword\">)<br>{<br>&nbsp; &nbsp; &nbsp;&nbsp; </span><span class=\"default\">$tmp_name </span><span class=\"keyword\">= </span><span class=\"default\">$_FILES</span><span class=\"keyword\">[</span><span class=\"string\">\"attachment\"</span><span class=\"keyword\">][</span><span class=\"string\">\"tmp_name\"</span><span class=\"keyword\">][</span><span class=\"default\">$key</span><span class=\"keyword\">];<br>&nbsp; &nbsp; &nbsp;&nbsp; if (!</span><span class=\"default\">$tmp_name</span><span class=\"keyword\">) continue;<br><br>&nbsp; &nbsp; &nbsp;&nbsp; </span><span class=\"default\">$name </span><span class=\"keyword\">= </span><span class=\"default\">basename</span><span class=\"keyword\">(</span><span class=\"default\">$_FILES</span><span class=\"keyword\">[</span><span class=\"string\">\"attachment\"</span><span class=\"keyword\">][</span><span class=\"string\">\"name\"</span><span class=\"keyword\">][</span><span class=\"default\">$key</span><span class=\"keyword\">]);<br><br>&nbsp; &nbsp; if (</span><span class=\"default\">$error </span><span class=\"keyword\">== </span><span class=\"default\">UPLOAD_ERR_OK</span><span class=\"keyword\">)<br>&nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; &nbsp; if ( </span><span class=\"default\">move_uploaded_file</span><span class=\"keyword\">(</span><span class=\"default\">$tmp_name</span><span class=\"keyword\">, </span><span class=\"string\">\"/tmp/\"</span><span class=\"keyword\">.</span><span class=\"default\">$name</span><span class=\"keyword\">) )<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class=\"default\">$uploaded_array</span><span class=\"keyword\">[] .= </span><span class=\"string\">\"Uploaded file \'\"</span><span class=\"keyword\">.</span><span class=\"default\">$name</span><span class=\"keyword\">.</span><span class=\"string\">\"\'.&lt;br/&gt;\\n\"</span><span class=\"keyword\">;<br>&nbsp; &nbsp; &nbsp; &nbsp; else<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class=\"default\">$errormsg </span><span class=\"keyword\">.= </span><span class=\"string\">\"Could not move uploaded file \'\"</span><span class=\"keyword\">.</span><span class=\"default\">$tmp_name</span><span class=\"keyword\">.</span><span class=\"string\">\"\' to \'\"</span><span class=\"keyword\">.</span><span class=\"default\">$name</span><span class=\"keyword\">.</span><span class=\"string\">\"\'&lt;br/&gt;\\n\"</span><span class=\"keyword\">;<br>&nbsp; &nbsp; }<br>&nbsp; &nbsp; else </span><span class=\"default\">$errormsg </span><span class=\"keyword\">.= </span><span class=\"string\">\"Upload error. [\"</span><span class=\"keyword\">.</span><span class=\"default\">$error</span><span class=\"keyword\">.</span><span class=\"string\">\"] on file \'\"</span><span class=\"keyword\">.</span><span class=\"default\">$name</span><span class=\"keyword\">.</span><span class=\"string\">\"\'&lt;br/&gt;\\n\"</span><span class=\"keyword\">;<br>}<br></span><span class=\"default\">?&gt;</span></p>', '2023-04-19 12:27:43', 'damien87@example.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mail_attachments`
+--
+
+CREATE TABLE `mail_attachments` (
+  `id` int(11) NOT NULL,
+  `mail_id` int(11) NOT NULL,
+  `attachment` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `mail_attachments`
+--
+
+INSERT INTO `mail_attachments` (`id`, `mail_id`, `attachment`) VALUES
+(1, 1017, '52100871_52100947_52100944_52100674.txt');
 
 -- --------------------------------------------------------
 
@@ -2457,6 +2534,7 @@ INSERT INTO `mail_cc` (`email`, `mail_id`) VALUES
 ('damien87@example.com', 184),
 ('damien87@example.com', 189),
 ('damien87@example.com', 200),
+('damien87@example.com', 1015),
 ('dejah30@example.org', 6),
 ('dejah30@example.org', 18),
 ('dejah30@example.org', 35),
@@ -2586,6 +2664,7 @@ INSERT INTO `mail_cc` (`email`, `mail_id`) VALUES
 ('nwalsh@example.org', 177),
 ('nwalsh@example.org', 194),
 ('nwalsh@example.org', 196),
+('nwalsh@example.org', 1013),
 ('qwisozk@example.net', 8),
 ('qwisozk@example.net', 16),
 ('qwisozk@example.net', 26),
@@ -2618,7 +2697,12 @@ INSERT INTO `mail_cc` (`email`, `mail_id`) VALUES
 ('schowalter.terrell@example.com', 169),
 ('schowalter.terrell@example.com', 187),
 ('schowalter.terrell@example.com', 192),
-('schowalter.terrell@example.com', 195);
+('schowalter.terrell@example.com', 195),
+('schowalter.terrell@example.com', 1015),
+('test1@gmail.com', 1014),
+('test2@gmail.com', 1014),
+('test2@gmail.com', 1016),
+('test2@gmail.com', 1017);
 
 -- --------------------------------------------------------
 
@@ -3648,7 +3732,39 @@ INSERT INTO `mail_sent_to` (`mail_id`, `user_email`) VALUES
 (1007, 'damien87@example.com'),
 (1007, 'dejah30@example.org'),
 (1007, 'eda29@example.com'),
-(1007, 'gabrielle07@example.net');
+(1007, 'gabrielle07@example.net'),
+(1008, 'test1@gmail.com'),
+(1010, 'gabrielle07@example.net'),
+(1010, 'johnson.godfrey@example.net'),
+(1013, 'gabrielle07@example.net'),
+(1013, 'johnson.godfrey@example.net'),
+(1014, 'qwisozk@example.net'),
+(1014, 'schowalter.terrell@example.com'),
+(1015, 'test1@gmail.com'),
+(1015, 'test2@gmail.com'),
+(1016, 'test1@gmail.com'),
+(1017, 'test1@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `max_recipients` int(11) NOT NULL,
+  `max_email_size` int(11) NOT NULL,
+  `max_attachments` int(11) NOT NULL,
+  `max_attachment_size` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `max_recipients`, `max_email_size`, `max_attachments`, `max_attachment_size`) VALUES
+(1, 3, 25, 2, 20);
 
 -- --------------------------------------------------------
 
@@ -3676,13 +3792,23 @@ INSERT INTO `users` (`email`, `name`, `password`, `avatar`, `role`) VALUES
 ('gabrielle07@example.net', 'Milford Reynolds DVM', '900150983cd24fb0d6963f7d28e17f72', 'https://loremflickr.com/640/480/', 'user'),
 ('johnson.godfrey@example.net', 'Alene Hettinger', '900150983cd24fb0d6963f7d28e17f72', 'https://loremflickr.com/640/480/', 'user'),
 ('lubowitz.cortez@example.com', 'Dr. Omer Schimmel I', '900150983cd24fb0d6963f7d28e17f72', 'https://loremflickr.com/640/480/', 'user'),
+('minhtien@gmail.com', 'Nguyễn Quốc Anh', '900150983cd24fb0d6963f7d28e17f72', '', 'admin'),
 ('nwalsh@example.org', 'Marielle Luettgen', '900150983cd24fb0d6963f7d28e17f72', 'https://loremflickr.com/640/480/', 'user'),
+('quocanh944@gmail.com', 'Nguyễn Quốc Anh', '45e4812014d83dde5666ebdf5a8ed1ed', '', 'user'),
 ('qwisozk@example.net', 'Dr. Francis Hoppe', '900150983cd24fb0d6963f7d28e17f72', 'https://loremflickr.com/640/480/', 'user'),
-('schowalter.terrell@example.com', 'Oceane Cummings', '900150983cd24fb0d6963f7d28e17f72', 'https://loremflickr.com/640/480/', 'user');
+('schowalter.terrell@example.com', 'Oceane Cummings', '900150983cd24fb0d6963f7d28e17f72', 'https://loremflickr.com/640/480/', 'user'),
+('test1@gmail.com', 'Test 1', '900150983cd24fb0d6963f7d28e17f72', '', 'user'),
+('test2@gmail.com', 'Test 2', '900150983cd24fb0d6963f7d28e17f72', '', 'user');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `badkeywords`
+--
+ALTER TABLE `badkeywords`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `inbox`
@@ -3693,11 +3819,24 @@ ALTER TABLE `inbox`
   ADD KEY `inbox_mail` (`mail_id`);
 
 --
+-- Indexes for table `locks`
+--
+ALTER TABLE `locks`
+  ADD PRIMARY KEY (`email`);
+
+--
 -- Indexes for table `mail`
 --
 ALTER TABLE `mail`
   ADD PRIMARY KEY (`id`),
   ADD KEY `mail_sent_by_user` (`sent_by`);
+
+--
+-- Indexes for table `mail_attachments`
+--
+ALTER TABLE `mail_attachments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mail_attachment` (`mail_id`);
 
 --
 -- Indexes for table `mail_bcc`
@@ -3724,6 +3863,12 @@ ALTER TABLE `mail_sent_to`
   ADD KEY `sent_to_user` (`user_email`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -3734,10 +3879,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `badkeywords`
+--
+ALTER TABLE `badkeywords`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `mail`
 --
 ALTER TABLE `mail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1018;
+
+--
+-- AUTO_INCREMENT for table `mail_attachments`
+--
+ALTER TABLE `mail_attachments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -3751,10 +3914,22 @@ ALTER TABLE `inbox`
   ADD CONSTRAINT `inbox_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `locks`
+--
+ALTER TABLE `locks`
+  ADD CONSTRAINT `locks_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `mail`
 --
 ALTER TABLE `mail`
   ADD CONSTRAINT `mail_sent_by_user` FOREIGN KEY (`sent_by`) REFERENCES `users` (`email`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `mail_attachments`
+--
+ALTER TABLE `mail_attachments`
+  ADD CONSTRAINT `mail_attachment` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `mail_bcc`
@@ -3768,7 +3943,7 @@ ALTER TABLE `mail_bcc`
 --
 ALTER TABLE `mail_cc`
   ADD CONSTRAINT `cc_mail` FOREIGN KEY (`mail_id`) REFERENCES `mail` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `cc_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE; 
+  ADD CONSTRAINT `cc_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mail_sent_to`
@@ -3781,27 +3956,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-CREATE TABLE badkeywords (
-  ID INT AUTO_INCREMENT PRIMARY KEY,
-  content VARCHAR(255) NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE settings (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  max_recipients INT NOT NULL,
-  max_email_size INT NOT NULL,
-  max_attachments INT NOT NULL,
-  max_attachment_size INT NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE `locks` (
-  `email` VARCHAR(50),
-  `lock_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `lock_reason` VARCHAR(255) NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-ALTER TABLE `locks`
-  ADD PRIMARY KEY (`email`);
-  ADD CONSTRAINT `locks_user` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
