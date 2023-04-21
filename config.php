@@ -7,4 +7,8 @@ return [
         'dbname' => '404webmail',
         'charset' => 'utf8mb4'
     ],
+    'account_database' => [
+        'username' => 'root',
+        'password' => ''
+    ]
 ];
