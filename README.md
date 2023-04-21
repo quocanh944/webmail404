@@ -12,13 +12,13 @@
         # Open the Database.php file located in the Core/ directory of our project.
         # Look for the constructor method of the class
         # Update the password parameter accordingly.
-    6. Once the SQL files have been imported, you can test the project by opening the following URL in your web browser: http://localhost/
-    7. To log in as an administrator, use the following credentials:
+    7. Once the SQL files have been imported, you can test the project by opening the following URL in your web browser: http://localhost/
+    8. To log in as an administrator, use the following credentials:
         username: admin
         password: 123456
-    8. To log in as a regular user, use the following credentials:
+    9. To log in as a regular user, use the following credentials:
         email: christelle34@example.org
         password: abc
-    9. To log in as a locked user, use the following credentials (locked user is not allowed to log in our application):
+    10. To log in as a locked user, use the following credentials (locked user is not allowed to log in our application):
         email: ahaag@example.net
         password: abc
