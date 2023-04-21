@@ -175,6 +175,8 @@ class Mail
             $temp_sent_to[] = $email['user_email'];
         }
 
+        Mail::setRead($id);
+
         return [
             'mail' => $mail,
             'sent_to' => $temp_sent_to,
@@ -182,5 +184,25 @@ class Mail
             'bcc' => $temp_bcc,
             'attachments' => $temp_attachments,
         ];
+    }
+
+    public static function setRead($id) {
+        $db = App::resolve(Database::class);
+
+        $id = $id + 0;
+
+        $stm = "UPDATE inbox SET is_read = 1 WHERE mail_id = $id";
+
+        $db->query($stm);
+    }
+
+    public static function setUnRead($id) {
+        $db = App::resolve(Database::class);
+
+        $id = $id + 0;
+
+        $stm = "UPDATE inbox SET is_read = 0 WHERE mail_id = $id AND inbox.email = :email";
+
+        $db->query($stm, ['email' => $_SESSION['user']['email']]);
     }
 }

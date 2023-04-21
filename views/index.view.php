@@ -92,7 +92,7 @@ require('partials/nav.php')
                                         <a class="dropdown-item" href="#">Move to Draft</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">Mark as Unread</a>
+                                        <a class="dropdown-item" onclick="markUnRead(<?php echo $value['id'] ?>)">Mark as Unread</a>
                                     </li>
                                 </ul>
                             </td>
@@ -113,6 +113,18 @@ require('partials/nav.php')
             },
             success: (data, status) => {
                 // console.log(status);
+                window.location.reload();
+            }
+        })
+    }
+
+    const markUnRead = (mailId) => {
+        $.ajax('/markUnRead', {
+            method: 'post',
+            data: {
+                'mailId': mailId
+            },
+            success: (data, status) => {
                 window.location.reload();
             }
         })

@@ -1,9 +1,22 @@
 <?php
 
 namespace Core;
+use Core\App;
+use Core\Database;
 
 class Validator
 {
+    public static function lockEmail($email)
+    {
+        $db = App::resolve(Database::class);
+        $stm = "SELECT *
+                FROM locks WHERE email = :email";
+
+        $isLock = $db->query($stm, ['email' => $email])->find();
+        
+        return isset($isLock['lock_reason']) ? $isLock['lock_reason'] : "";
+    }
+
     public static function badkeyword($value) {
         $db = App::resolve(Database::class);
         $stm = "SELECT content
@@ -51,6 +64,9 @@ class Validator
 
     public static function email($value)
     {
+        if ($value == 'admin') {
+            return true;
+        }
         return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
 }

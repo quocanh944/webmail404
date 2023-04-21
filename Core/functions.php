@@ -63,3 +63,12 @@ function logout()
     $params = session_get_cookie_params();
     setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
 }
+
+function isImage($image){
+    $extension = pathinfo($image, PATHINFO_EXTENSION);
+    $imgExtArr = ['jpg', 'jpeg', 'png'];
+    if(in_array($extension, $imgExtArr)){
+        return true;
+    }
+    return false;
+}

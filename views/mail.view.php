@@ -33,7 +33,7 @@ require('partials/nav.php')
             <div class="w-100 justify-content-between mt-3">
                 <div class="h-50 row pb-3" name="">
                     <div class="Avt senderAvt float-start col-2 col-lg-1 col-md-1" name="icon senderAvt">
-                        <img class="w-75 rounded-circle" name="AvtImg" src="<?php echo $mail['avatar'] ?>" alt="">
+                        <img class="w-75 rounded-circle" name="AvtImg" src="/loadAvatar?email=<?php echo $mail['sent_by'] ?>" alt="">
                     </div>
                     <div class="col-8">
                         <span>

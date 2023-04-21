@@ -36,7 +36,7 @@ class User
     public function save()
     {
         $db = App::resolve(Database::class);
-        $db->query('INSERT INTO user (email, password, name, role, avatar) VALUES (:email, :password, :name, :role, :avatar)', [
+        $db->query('INSERT INTO users (email, password, name, role, avatar) VALUES (:email, :password, :name, :role, :avatar)', [
             'email' => $this->email,
             'password' => $this->password,
             'name' => $this->name,
@@ -48,7 +48,7 @@ class User
     public function update()
     {
         $db = App::resolve(Database::class);
-        $db->query('UPDATE user SET password = :password, name = :name, role = :role, avatar = :avatar WHERE email = :email', [
+        $db->query('UPDATE users SET password = :password, name = :name, role = :role, avatar = :avatar WHERE email = :email', [
             'password' =>  $this->password,
             'name' => $this->name,
             'role' =>  $this->role,
