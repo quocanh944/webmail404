@@ -6,8 +6,10 @@ $router->get('/spam', 'controllers/spam.php')->only('auth');
 $router->get('/trash', 'controllers/trash.php')->only('auth');
 $router->get('/draft', 'controllers/draft.php')->only('auth');
 $router->get('/sent', 'controllers/sent.php')->only('auth');
+$router->get('/dashboard', 'controllers/dashboard.php')->only('auth');
 $router->get('/mail', 'controllers/mail/viewMail.php')->only('auth');
 $router->get('/search', 'controllers/mail/search.php')->only('auth');
+$router->get('/loadAvatar', 'controllers/loadAvatar.php')->only('auth');
 
 $router->get('/register', 'controllers/registration/create.php')->only('guest');
 $router->post('/register', 'controllers/registration/store.php')->only('guest');
@@ -20,6 +22,8 @@ $router->post('/changeStarred', 'controllers/mail/changeStarred.php')->only('aut
 $router->post('/sendEmail', 'controllers/mail/sendEmail.php')->only('auth');
 $router->post('/saveDraft', 'controllers/mail/saveDraft.php')->only('auth');
 $router->post('/markUnRead', 'controllers/mail/markUnRead.php')->only('auth');
+$router->post('/changePassword', 'controllers/changePassword.php')->only('auth');
+$router->post('/uploadAvatar', 'controllers/uploadAvatar.php')->only('auth');
 
 $router->get('/download', 'controllers/mail/download.php')->only('auth');
 
