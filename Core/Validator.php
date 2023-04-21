@@ -55,6 +55,15 @@ class Validator
         return $error;
     }
 
+    public static function checkNumberOfRecipients($number) {
+        $db = App::resolve(Database::class);
+        $stm = "SELECT * FROM settings WHERE id = 1";
+
+        $appSettings = $db->query($stm)->find();
+
+        return [$appSettings['max_recipients'] + 0 >= $number, $appSettings['max_recipients']];
+    }
+
     public static function string($value, $min = 1, $max = INF)
     {
         $value = trim($value);

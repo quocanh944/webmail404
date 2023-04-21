@@ -29,7 +29,7 @@ if ($badCheck[0] != true) {
 
 $fileCheck = Validator::fileSizeCheck();
 if (count($fileCheck) > 0) {
-    echo json_encode(["Error" => $fileCheck]);
+    echo json_encode(["Error" => json_encode($fileCheck)]);
     die();
 }
 
@@ -46,6 +46,13 @@ foreach ($sentTo as $email) {
             array_push($respone['Invalid Email'], $email);
         }
     }
+}
+
+$checkNumberSentTo = Validator::checkNumberOfRecipients(count($sentTo));
+
+if (!$checkNumberSentTo[0]) {
+    echo json_encode(['Error' => "Number of sent to user is less than or equal to: " . $checkNumberSentTo[1]]);
+    die();
 }
 
 if ($error) {
