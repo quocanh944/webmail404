@@ -23,15 +23,15 @@
             <!-- Avatar -->
             <li class="nav-item dropdown position-relative">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="<?php echo isset($user['avatar']) ? $user['avatar'] : 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000' ?>" class="rounded-circle" height="22" alt="Portrait of a Woman" loading="lazy" />
+                    <img src="/loadAvatar" class="rounded-circle" height="22" alt="Portrait of a Woman" loading="lazy" />
                 </a>
                 <ul class="dropdown-menu position-absolute top-42" aria-labelledby="dropdown04" style="left: -112px;">
                     <li>
-                        <a class="dropdown-item" href="#">My profile</a>
+                        <a class="dropdown-item" href="/dashboard">My profile</a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Settings</a>
-                    </li>
+                    <!-- <li>
+                        <a class="dropdown-item" href="/das">Settings</a>
+                    </li> -->
                     <li>
                         <form method="POST" action="/session">
                             <input type="hidden" name="_method" value="DELETE" />

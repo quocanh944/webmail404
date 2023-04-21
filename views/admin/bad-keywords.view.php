@@ -7,7 +7,7 @@
       require(base_path("views/admin/partials/head.php"));
   ?>
 
-  <title>Admin Settings</title>
+  <title>Bad Keywords</title>
   
   <!-- Own css for each page -->
 </head>
@@ -22,7 +22,7 @@
                 <form id="addKeywordForm">
                   <div class="mb-3">
                     <label for="keywordInput" class="form-label">Add Keyword</label>
-                    <input type="text" class="form-control" id="keywordInput" name="keywordInput">
+                    <input type="text" class="form-control" id="keywordInput" name="keywordInput" placeholder="Input keyword" required>
                   </div>
                   <button type="submit" class="btn btn-primary mb-3">Add</button>
                 </form>

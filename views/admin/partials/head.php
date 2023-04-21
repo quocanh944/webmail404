@@ -3,6 +3,7 @@
   <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
   <meta name='description' content='' />
   <meta name='author' content='' />
+  <link rel="icon" type="image/jpeg" href="../assets/dist/img/favicon.jpg">
   <script src='https://use.fontawesome.com/releases/v6.1.0/js/all.js' crossorigin='anonymous'></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

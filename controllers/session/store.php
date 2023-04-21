@@ -18,6 +18,11 @@ if (!Validator::string($password)) {
     $errors['password'] = 'Please provide a valid password.';
 }
 
+if (!empty(Validator::lockEmail($email))) {
+    $temp = Validator::lockEmail($email);
+    $errors['email'] = "You are lock reason: $temp ";
+}
+
 if (! empty($errors)) {
     return view('session/create.view.php', [
         'errors' => $errors
