@@ -30,22 +30,22 @@
                   <div class="mb-3">
                     <label for="maxRecipientsInput" class="form-label">Max recipients per email</label>
                     <input type="number" class="form-control" id="maxRecipientsInput" name="maxRecipientsInput" min="1"
-                      max="100" required data-bs-toggle="tooltip" placeholder="Max Recipient Input" required title="<?php echo "Your current settiing " . $settings['max_recipients']; ?>">
+                      max="100" required data-bs-toggle="tooltip" placeholder="Max Recipient Input" required title="<?php echo "Your current setting is " . $settings['max_recipients']; ?>">
                   </div>
 
                   <div class="mb-3">
                     <label for="maxSizeInput" class="form-label">Max email size (MB)</label>
-                    <input type="number" class="form-control" id="maxSizeInput" name="maxSizeInput" min="1" max="100" required data-bs-toggle="tooltip" data-bs-placement="top" placeholder="Max Email Size" required title="<?php echo "Your current setting " . $settings['max_email_size'];; ?>">
+                    <input type="number" class="form-control" id="maxSizeInput" name="maxSizeInput" min="1" max="100" required data-bs-toggle="tooltip" data-bs-placement="top" placeholder="Max Email Size" required title="<?php echo "Your current setting is " . $settings['max_email_size'];; ?>">
                   </div>
 
                   <div class="mb-3">
                     <label for="maxAttachmentsInput" class="form-label">Max attachments per email</label>
-                    <input type="number" class="form-control" id="maxAttachmentsInput" name="maxAttachmentsInput" min="1" max="10" required data-bs-toggle="tooltip" data-bs-placement="top" placeholder="Max Attachments Input" required  title="<?php echo "Your current setting " . $settings['max_attachments'];; ?>">
+                    <input type="number" class="form-control" id="maxAttachmentsInput" name="maxAttachmentsInput" min="1" max="10" required data-bs-toggle="tooltip" data-bs-placement="top" placeholder="Max Attachments Input" required  title="<?php echo "Your current setting is " . $settings['max_attachments'];; ?>">
                   </div>
 
                   <div class="mb-3">
                     <label for="maxAttachmentSizeInput" class="form-label">Max attachment size (MB)</label>
-                    <input type="number" class="form-control" id="maxAttachmentSizeInput" name="maxAttachmentSizeInput" min="1" max="50" required data-bs-toggle="tooltip" placeholder="Max Attachment Size" required data-bs-placement="top" title="<?php echo "Your current settiing " . $settings['max_attachment_size'];; ?>">
+                    <input type="number" class="form-control" id="maxAttachmentSizeInput" name="maxAttachmentSizeInput" min="1" max="50" required data-bs-toggle="tooltip" placeholder="Max Attachment Size" required data-bs-placement="top" title="<?php echo "Your current setting is " . $settings['max_attachment_size'];; ?>">
                   </div>
 
                   <button type="button" id="btnSaveSetting" class="btn btn-dark">Save</button>
