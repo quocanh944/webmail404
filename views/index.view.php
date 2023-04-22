@@ -80,19 +80,17 @@ require('partials/nav.php')
                                         <a class="dropdown-item" href="#">Reply</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">Move to Spam</a>
+                                        <a class="dropdown-item" style="cursor: pointer;" onclick="moveToSpam(<?php echo $value['id'] ?>)">Move to Spam</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">Move to Trash</a>
+                                        <?php if (urlIs('/trash')) { ?>
+                                            <a class="dropdown-item" style="cursor: pointer;" onclick="deleteMail(<?php echo $value['id'] ?>)">Delete Mail</a>
+                                        <?php } else { ?>        
+                                            <a class="dropdown-item" style="cursor: pointer;" onclick="moveToTrash(<?php echo $value['id'] ?>)">Move to Trash</a>
+                                        <?php } ?>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">Move to Archive</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">Move to Draft</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" onclick="markUnRead(<?php echo $value['id'] ?>)">Mark as Unread</a>
+                                        <a class="dropdown-item" style="cursor: pointer;" onclick="markUnRead(<?php echo $value['id'] ?>)">Mark as Unread</a>
                                     </li>
                                 </ul>
                             </td>
@@ -129,6 +127,43 @@ require('partials/nav.php')
             }
         })
     }
+
+    const moveToTrash = (mailId) => {
+        $.ajax('/moveToTrash', {
+            method: 'post',
+            data: {
+                'mailId': mailId
+            },
+            success: (data, status) => {
+                window.location.reload();
+            }
+        })
+    }
+
+    const moveToSpam = (mailId) => {
+        $.ajax('/moveToSpam', {
+            method: 'post',
+            data: {
+                'mailId': mailId
+            },
+            success: (data, status) => {
+                window.location.reload();
+            }
+        })
+    }
+
+    const deleteMail = (mailId) => {
+        $.ajax('/deleteMail', {
+            method: 'post',
+            data: {
+                'mailId': mailId
+            },
+            success: (data, status) => {
+                window.location.reload();
+            }
+        })
+    }
+
     $(document).ready(function() {
         $(".btnDeleteMail").hide();
         $(".btnSpam").hide();

@@ -22,6 +22,9 @@ $router->post('/changeStarred', 'controllers/mail/changeStarred.php')->only('aut
 $router->post('/sendEmail', 'controllers/mail/sendEmail.php')->only('auth');
 $router->post('/saveDraft', 'controllers/mail/saveDraft.php')->only('auth');
 $router->post('/markUnRead', 'controllers/mail/markUnRead.php')->only('auth');
+$router->post('/moveToTrash', 'controllers/mail/moveToTrash.php')->only('auth');
+$router->post('/moveToSpam', 'controllers/mail/moveToSpam.php')->only('auth');
+$router->post('/deleteMail', 'controllers/mail/deleteMail.php')->only('auth');
 $router->post('/changePassword', 'controllers/changePassword.php')->only('auth');
 $router->post('/uploadAvatar', 'controllers/uploadAvatar.php')->only('auth');
 

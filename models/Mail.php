@@ -205,4 +205,34 @@ class Mail
 
         $db->query($stm, ['email' => $_SESSION['user']['email']]);
     }
+
+    public static function moveToTrash($id) {
+        $db = App::resolve(Database::class);
+
+        $id = $id + 0;
+
+        $stm = "UPDATE inbox SET is_trash = 1, is_spam = 0, is_draft = 0 WHERE mail_id = $id AND inbox.email = :email";
+
+        $db->query($stm, ['email' => $_SESSION['user']['email']]);
+    }
+
+    public static function moveToSpam($id) {
+        $db = App::resolve(Database::class);
+
+        $id = $id + 0;
+
+        $stm = "UPDATE inbox SET is_trash = 0, is_spam = 1, is_draft = 0 WHERE mail_id = $id AND inbox.email = :email";
+
+        $db->query($stm, ['email' => $_SESSION['user']['email']]);
+    }
+
+    public static function deleteMail($id) {
+        $db = App::resolve(Database::class);
+
+        $id = $id + 0;
+
+        $stm = "DELETE FROM inbox WHERE mail_id = $id AND inbox.email = :email";
+
+        $db->query($stm, ['email' => $_SESSION['user']['email']]);
+    }
 }
