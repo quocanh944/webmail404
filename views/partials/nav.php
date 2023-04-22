@@ -5,7 +5,7 @@
         <div class="d-flex">
             <!-- Brand -->
             <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="/">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" height="20" alt="MDB Logo" loading="lazy" style="margin-top: 2px;" />
+                <img src="../assets/dist/img/favicon.jpg" height="20" alt="MDB Logo" loading="lazy" style="margin-top: 2px;" />
             </a>
 
             <!-- Search form -->
